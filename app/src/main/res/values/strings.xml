@@ -1,0 +1,107 @@
+<!--
+/*
+ * Author: Martin Woolley
+ * Twitter: @bluetooth_mdw
+ *
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
+-->
+<resources>
+    <string name="app_name">micro:bit Blue</string>
+    <string name="menu_settings">Settings</string>
+    <string name="menu_help">Help</string>
+    <string name="menu_about">About</string>
+    <string name="menu_profile">Bluetooth Profile</string>
+    <string name="menu_services">Bluetooth Services</string>
+    <string name="menu_refresh">Refresh Services</string>
+    <string name="menu_new_game">New Game</string>
+
+    <string name="screen_title_main">Device List</string>
+    <string name="screen_title_menu">Demo List</string>
+    <string name="screen_title_accelerometer">Accelerometer</string>
+    <string name="screen_title_magnetometer">Magnetometer</string>
+    <string name="screen_title_buttons">Buttons</string>
+    <string name="screen_title_LEDs">LEDs</string>
+    <string name="screen_title_temperature">Temperature</string>
+    <string name="screen_title_digital_output">Digital Output</string>
+    <string name="screen_title_animal_magic">Animal Magic?</string>
+    <string name="screen_title_device_information">Device Information</string>
+    <string name="screen_title_controller">Dual D-Pad Controller</string>
+    <string name="screen_title_gamepad">Gamepad Controller</string>
+    <string name="screen_title_hrm">Heart Rate Histogram</string>
+    <string name="screen_title_UART_AVM">UART AVM</string>
+
+    <string name="model_number">Model Number:</string>
+    <string name="serial_number">Serial Number:</string>
+    <string name="hardware_revision">Hardware Revision:</string>
+    <string name="firmware_revision">Firmware Revision:</string>
+    <string name="animal_magic">Animal Magic</string>
+    <string name="io_digital_output">IO Digital Output</string>
+    <string name="temperature">Temperature</string>
+    <string name="buttons">Buttons</string>
+    <string name="accelerometer">Accelerometer</string>
+    <string name="magnetometer">Magnetometer</string>
+    <string name="leds">LEDs</string>
+    <string name="step_events">Steps</string>
+    <string name="temperature_alarm">Temperature Alarm</string>
+    <string name="squirrel_counter">Squirrel Counter</string>
+    <string name="controller">Dual D-Pad Controller</string>
+    <string name="heart_rate_histogram">Heart Rate Histogram</string>
+    <string name="AVM">Animal Vegetable Mineral</string>
+    <string name="trivia_scoreboard">Trivia Scoreboard</string>
+
+    <string name="accelerometer_period">Accelerometer Period</string>
+    <string name="magnetometer_period">Magnetometer Period</string>
+    <string name="scrolling_delay">Scrolling Delay</string>
+    <string name="display_text">Display Text</string>
+    <string name="bluetooth_scanning">Bluetooth Scanning</string>
+    <string name="scan_filter_unpaired">Filter unpaired micro:bits from scan results?</string>
+    <string name="temperature_lower">Lower Temperature Limit</string>
+    <string name="temperature_upper">Upper Temperature Limit</string>
+    <string name="bluetooth_services">Bluetooth Services on micro:bit</string>
+    <string name="services_key">Key</string>
+    <string name="zone1_limit">Zone 1 Upper BPM Limit</string>
+    <string name="zone2_limit">Zone 2 Upper BPM Limit</string>
+    <string name="zone3_limit">Zone 3 Upper BPM Limit</string>
+    <string name="zone4_limit">Zone 4 Upper BPM Limit</string>
+    <string name="service_generic_access">Generic Access Service</string>
+    <string name="service_generic_attribute">Generic Attribute Service</string>
+    <string name="service_device_information">Device Information Service</string>
+    <string name="service_accelerometer">Accelerometer Service</string>
+    <string name="service_magnetometer">Magnetometer Service</string>
+    <string name="service_button">Button Service</string>
+    <string name="service_io_pin">IO Pin Service</string>
+    <string name="service_led">LED Service</string>
+    <string name="service_event">Event Service</string>
+    <string name="service_dfu_control">DFU Control Service</string>
+    <string name="service_temperature">Temperature Service</string>
+    <string name="service_uart">UART Service</string>
+    <string name="avm_question_label">Enter your Y/N question</string>
+    <string name="avm_question_btn">Send question</string>
+    <string name="avm_new_game_btn">New Game</string>
+    <string name="avm_answer_label">micro:bit answer</string>
+
+    <string name="gamepad_event_code">Gamepad Event Code</string>
+    <string name="gamepad_pad_1">Left Pad Event Values</string>
+    <string name="gamepad_pad_2">Right Pad Event Values</string>
+    <string name="gamepad_up_on">Up ON</string>
+    <string name="gamepad_up_off">Up OFF</string>
+    <string name="gamepad_down_on">Down ON</string>
+    <string name="gamepad_down_off">Down OFF</string>
+    <string name="gamepad_left_on">Left ON</string>
+    <string name="gamepad_left_off">Left OFF</string>
+    <string name="gamepad_right_on">Right ON</string>
+    <string name="gamepad_right_off">Right OFF</string>
+
+</resources>

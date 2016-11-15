@@ -1,0 +1,35 @@
+<!--
+/*
+ * Author: Martin Woolley
+ * Twitter: @bluetooth_mdw
+ *
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
+-->
+<html>
+<head>
+    <LINK href="file:///android_asset/help/help_style.css" type="text/css" rel="stylesheet">
+</head>
+<img>
+<h1>Magnetometer</h1>
+<h2>The Demo</h2>
+<p>The BBC micro:bit contains a magnetometer or electronic compass. This demo shows how you can obtain directional data over a Bluetooth Low Energy connection and use it in an application.</p>
+<h2>The Code</h2>
+<p>Magnetometer data may be obtained from the Bluetooth Magnetometer Service's Magnetometer Data characteristic as raw X, Y, Z values or as a 'bearing' in degrees from the Magnetometer Bearing characteristic. Each time the magnetometer is polled, new values become available. All Values from either characteristic may be transmitted to this application as Bluetooth Notifications. To make this happen, the code must first subscribe to notifications relating to the Magnetometer Data characteristic and/or Magnetometer Bearing characteristic by setting the associated Client Characteristic Configuration Descriptor (CCCD) to 0x0100. Once this has been done, notification messages will be delivered to the BleAdapterService object and from there passed as a Message to the MagnetometerActivity object for processing. </p>
+<p>You can control how often the magnetometer is polled via the Settings screen. When you change the polling frequency, the new value is sent to the micro:bit by writing it to the Magnetometer Service\'s Magnetometer Period characteristic.</p>
+<p>Raw magnetometer data from the micro:bit can be a bit jerky and so a low pass filter function is used to smooth the data. Have a look at the lowPass function in the Utility class to see how this works.</p>
+<h2>Note</h2>
+<p>The first time you use the MicroBitCompass class it should trigger a calibration procedure which invlolves drawing a circle with the micro:bit. Just follow the instructions on the display of the micro:bit.</p>
+</body>
+</html>

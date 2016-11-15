@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/*
+ * Author: Martin Woolley
+ * Twitter: @bluetooth_mdw
+ *
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
+--><resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="red">#FF0000</color>
+    <color name="green">#00FF00</color>
+    <color name="blue">#0000FF</color>
+    <color name="silver">#C0C0C0</color>
+    <color name="heading">#000000</color>
+    <color name="normal">#606060</color>
+    <color name="important">#FF0000</color>
+    <color name="message_background">#DCDCDC</color>
+
+    <color name="pad_1_up_colour">#EA1D24</color>
+    <color name="pad_1_down_colour">#FFF100</color>
+    <color name="pad_1_left_colour">#1FB34E</color>
+    <color name="pad_1_right_colour">#069FE9</color>
+
+    <color name="pad_2_up_colour">#FD8026</color>
+    <color name="pad_2_down_colour">#EEE5AD</color>
+    <color name="pad_2_left_colour">#B5E51D</color>
+    <color name="pad_2_right_colour">#9DD8E8</color>
+
+    <color name="pad_background">#1D1D1D</color>
+
+</resources>

@@ -1,0 +1,106 @@
+<!--
+/*
+ * Author: Martin Woolley
+ * Twitter: @bluetooth_mdw
+ *
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
+-->
+<html>
+<head>
+    <LINK href="file:///android_asset/help/help_style.css" type="text/css" rel="stylesheet">
+</head>
+<img>
+<h1>Temperature Alarm - micro:bit Event Service demo</h1>
+<h2>The Demo</h2>
+<p>The BBC micro:bit contains a message bus which acts as a conduit for events of all sorts. A micro:bit developer can create events and connected applications
+    like this one can use the Bluetooth Event Service to register an interest in particular events and receive notifications from the micro:bit when events of interest are generated on the bus.</p>
+<p>This demo must be run with custom firmware on the micro:bit therefore.</p>
+<h2>The Code</h2>
+<p>
+</p>
+<p>
+    Your micro:bit needs the following code in main.cpp for this demo to work and the Event Service must be enabled.
+</p>
+<p>
+<pre>
+#include "MicroBit.h"
+
+/*
+ * Temperature Alarm
+ * Uses the Bluetooth Event Service to inform registered clients whenever the temperature falls below xx or rises above yy
+ */
+
+uint16_t state      = 0; // 0=ok, 1=alarming because it's cold, 2=alarming because it's hot
+uint16_t ok         = 0;
+uint16_t any        = 0;
+uint16_t temp_alarm = 9000;
+uint16_t set_lower  = 9001;
+uint16_t set_upper  = 9002;
+uint16_t cold       = 1;
+uint16_t hot        = 2;
+uint8_t  upper      = 24;
+uint8_t  lower      = 19;
+
+void onSetLower(MicroBitEvent e)
+{
+	lower = e.value;
+    uBit.display.scroll("L=");
+    uBit.display.scrollAsync(lower);
+}
+
+void onSetUpper(MicroBitEvent e)
+{
+	upper = e.value;
+    uBit.display.scroll("U=");
+    uBit.display.scrollAsync(upper);
+}
+
+void onTemperatureReading(MicroBitEvent e)
+{
+	int temperature = uBit.thermometer.getTemperature();
+	uBit.display.scrollAsync(temperature);
+	if (temperature > upper && state == ok) {
+	    MicroBitEvent evt(temp_alarm, hot);
+		state = hot;
+		return;
+	}
+	if (temperature < lower && state == ok) {
+	    MicroBitEvent evt(temp_alarm, cold);
+		state = cold;
+		return;
+	}
+	if (temperature >= lower && temperature <= upper && state != ok) {
+	    MicroBitEvent evt(temp_alarm, ok);
+		state = ok;
+	}
+}
+
+void app_main()
+{
+  uBit.display.scrollAsync("TEMP ALARM");
+  // listen for client events which set the upper and lower temperature limits
+  uBit.MessageBus.listen(set_lower, any, onSetLower);
+  uBit.MessageBus.listen(set_upper, any, onSetUpper);
+  // listen to the temperature sensor
+  uBit.MessageBus.listen(MICROBIT_ID_THERMOMETER, MICROBIT_THERMOMETER_EVT_UPDATE, onTemperatureReading);
+}
+</pre>
+</p>
+<p>
+    All the code for this demo can be found in ui.TemperatureAlarmActivity.java except for the Bluetooth operations which are in bluetooth.BleAdapterService.
+</p>
+
+</body>
+</html>

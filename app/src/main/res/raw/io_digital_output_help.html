@@ -1,0 +1,48 @@
+<!--
+/*
+ * Author: Martin Woolley
+ * Twitter: @bluetooth_mdw
+ *
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
+-->
+<html>
+<head>
+    <LINK href="file:///android_asset/help/help_style.css" type="text/css" rel="stylesheet">
+</head>
+<img>
+<h1>I/O DIGITAL OUTPUT</h1>
+<h2>The Demo</h2>
+<p>The BBC micro:bit has a metallic, brass coloured edge connector with a number of separate connection points known as "pins" plus a 3 volt connector and a GND connector for powering other devices. The other pins are for data and each may be used for either input or output and for digital values (0 or 1) or analogue values (0 - 255). </p>
+<p>The IO Digital Output demo is designed to allow you to connect something suitable like an LED to data pin 0 and then from this application, using the great big on-screen button, you can switch the LED off, all from your phone all over Bluetooth! This is tailor made for people who like to take it easy and let technology do all the hard work... like getting up off the sofa and walking across the room to flick a switch :-)  </p>
+<img src="file:///android_asset/help/connected_led.png"/>
+<p>Photo showing an LED, protected by a resistor and connected to pin 0 and GND on the micro:bit. Perfect for this demo!</p>
+<h2>The Code</h2>
+<p>
+    This demo uses the Bluetooth IO Pin Service which contains three characteristics.
+</p>
+<p>
+    The PIN Data characteristic has a value part which consists of a variable number of pairs of bytes with each pair consisting of a pin number and a pin value. Write to this characteristic and each physical pin will have its state changed according to the value state and the way you've configured it using the other two characteristics. You can enable notifications on this characteristic (although this is not done in the demo) and notifications will deliver Pin Number / Value pairs for those pins defined as input pins by the Pin IO Configuration characteristic and whose value when read differs from the last read of the pin.
+</p>
+<p>
+    The PIN AD Configuration characteristic lets you control whether a pin is to be used with digital or analogue values. It uses one bit per pin and a bit value of 0 means digital and a value of 1 means analogue.
+</p>
+<p>
+    The PIN IO Configuration characteristic similarly lets you configure each pin to be used for either input or output. A bit mask representation is also used with a 0 meaning output and a 1 means input.
+</p>
+<p>
+    All the code for this demo can be found in ui.IoDigitalOutputActivity.java except for the Bluetooth operations which are in bluetooth.BleAdapterService.
+</p>
+</body>
+</html>

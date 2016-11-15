@@ -1,0 +1,98 @@
+<!--
+/*
+ * Author: Martin Woolley
+ * Twitter: @bluetooth_mdw
+ *
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
+-->
+<html>
+<head>
+    <LINK href="file:///android_asset/help/help_style.css" type="text/css" rel="stylesheet">
+</head>
+<img>
+<h1>DUAL D-PAD CONTROLLER</h1>
+<h2>The Demo</h2>
+<p>This demo allows you to use your phone as a basic dual d-pad controller similar to those used with games consoles. It uses its own special values (see The Code below) for communicating with a micro:bit which must be running code which understands those values. It will not work with a standard games console!</p>
+<h2>The Code</h2>
+<p>
+    This demo uses the Bluetooth Event Service. Specifically, it writes an event code/value to the Client Event characteristic whenever a pad is touched by the user and whenever the user removes their finger from a pad.
+</p>
+<p>
+    Your micro:bit needs the following code in main.cpp for this demo to work and the Event Service must be enabled.
+</p>
+<p>
+<pre>
+/* mbed Microcontroller Library
+ * Copyright (c) 2006-2015 ARM Limited
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+#include "MicroBit.h"
+
+#define MES_DPAD_CONTROLLER                 1104
+#define MES_DPAD_1_BUTTON_UP_ON             1
+#define MES_DPAD_1_BUTTON_UP_OFF            2
+#define MES_DPAD_1_BUTTON_DOWN_ON           3
+#define MES_DPAD_1_BUTTON_DOWN_OFF          4
+#define MES_DPAD_1_BUTTON_LEFT_ON           5
+#define MES_DPAD_1_BUTTON_LEFT_OFF          6
+#define MES_DPAD_1_BUTTON_RIGHT_ON          7
+#define MES_DPAD_1_BUTTON_RIGHT_OFF         8
+#define MES_DPAD_2_BUTTON_UP_ON             9
+#define MES_DPAD_2_BUTTON_UP_OFF            10
+#define MES_DPAD_2_BUTTON_DOWN_ON           11
+#define MES_DPAD_2_BUTTON_DOWN_OFF          12
+#define MES_DPAD_2_BUTTON_LEFT_ON           13
+#define MES_DPAD_2_BUTTON_LEFT_OFF          14
+#define MES_DPAD_2_BUTTON_RIGHT_ON          15
+#define MES_DPAD_2_BUTTON_RIGHT_OFF         16
+
+/*
+ * Dual D-Pad Controller
+ * Responds to events sent by the Dual D Controller demo application
+ */
+
+void onControllerEvent(MicroBitEvent e)
+{
+  // ADD YOUR CODE HERE TO RESPOND TO THE VARIOUS VALUES OF e.value AND TAKE WHATEVER CONTROL ACTION YOU WANT
+}
+
+void app_main()
+{
+  uBit.display.scrollAsync("CONTROLLER");
+
+    // Listen for any/all events of type MES_DPAD_CONTROLLER
+  uBit.MessageBus.listen(MES_DPAD_CONTROLLER, 0, onControllerEvent);
+}
+
+
+</pre>
+</p>
+<p>
+    All the code for this demo can be found in ui.DualDPadControllerActivity.java except for the Bluetooth operations which are in bluetooth.BleAdapterService.
+</p>
+</body>
+</html>

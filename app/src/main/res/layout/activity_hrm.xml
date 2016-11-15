@@ -1,0 +1,568 @@
+<!--
+/*
+ * Author: Martin Woolley
+ * Twitter: @bluetooth_mdw
+ *
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
+-->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:paddingBottom="10dip"
+    android:paddingTop="10dip">
+
+    <TextView
+        android:id="@+id/message"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingLeft="10dip"
+        android:background="@color/message_background"
+        android:textSize="16dp"
+        android:text="" />
+
+    <TextView
+        android:id="@+id/bpm"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingLeft="10dip"
+        android:layout_marginTop="20dp"
+        android:background="@color/silver"
+        android:textSize="56dp"
+        android:textColor="@color/red"
+        android:text="" />
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/deviceView"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical"
+            android:paddingBottom="10dip"
+            android:paddingTop="10dip">
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="vertical"
+                android:paddingBottom="5dip">
+
+                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:paddingBottom="5dip">
+
+
+                    <GridLayout
+                        android:id="@+id/grid"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:columnCount="6">
+
+                        <TextView
+                            android:id="@+id/histogram_percentage_100"
+                            android:gravity="center"
+                            android:paddingBottom="10dip"
+                            android:paddingTop="10dip"
+                            android:width="40dip"
+                            android:height="50dip"
+                            android:layout_marginLeft="0dp"
+                            android:layout_marginRight="0dp"
+                            android:layout_marginBottom="4dp"
+                            android:layout_marginTop="4dp"
+                            android:background="@color/white"
+                            android:text="100%"/>
+
+                        <TextView
+                            android:id="@+id/histogram_cell_0"
+                            android:gravity="center"
+                            android:paddingBottom="10dip"
+                            android:paddingTop="10dip"
+                            android:width="50dip"
+                            android:height="50dip"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginRight="4dp"
+                            android:layout_marginBottom="4dp"
+                            android:layout_marginTop="4dp"
+                            android:background="@color/silver" />
+
+                        <TextView
+                            android:id="@+id/histogram_cell_1"
+                            android:gravity="center"
+                            android:paddingBottom="10dip"
+                            android:paddingTop="10dip"
+                            android:width="50dip"
+                            android:height="50dip"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginRight="4dp"
+                            android:layout_marginBottom="4dp"
+                            android:layout_marginTop="4dp"
+                            android:background="@color/silver" />
+
+                        <TextView
+                            android:id="@+id/histogram_cell_2"
+                            android:gravity="center"
+                            android:paddingBottom="10dip"
+                            android:paddingTop="10dip"
+                            android:width="50dip"
+                            android:height="50dip"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginRight="4dp"
+                            android:layout_marginBottom="4dp"
+                            android:layout_marginTop="4dp"
+                            android:background="@color/silver" />
+
+                        <TextView
+                            android:id="@+id/histogram_cell_3"
+                            android:gravity="center"
+                            android:paddingBottom="10dip"
+                            android:paddingTop="10dip"
+                            android:width="50dip"
+                            android:height="50dip"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginRight="4dp"
+                            android:layout_marginBottom="4dp"
+                            android:layout_marginTop="4dp"
+                            android:background="@color/silver" />
+
+                        <TextView
+                            android:id="@+id/histogram_cell_4"
+                            android:gravity="center"
+                            android:paddingBottom="10dip"
+                            android:paddingTop="10dip"
+                            android:width="50dip"
+                            android:height="50dip"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginRight="4dp"
+                            android:layout_marginBottom="4dp"
+                            android:layout_marginTop="4dp"
+                            android:background="@color/silver" />
+
+
+                        <TextView
+                            android:id="@+id/histogram_percentage_80"
+                            android:gravity="center"
+                            android:paddingBottom="10dip"
+                            android:paddingTop="10dip"
+                            android:width="40dip"
+                            android:height="50dip"
+                            android:layout_marginLeft="0dp"
+                            android:layout_marginRight="0dp"
+                            android:layout_marginBottom="4dp"
+                            android:layout_marginTop="4dp"
+                            android:background="@color/white"
+                            android:text="80%"/>
+
+                        <TextView
+                            android:id="@+id/histogram_cell_5"
+                            android:gravity="center"
+                            android:paddingBottom="10dip"
+                            android:paddingTop="10dip"
+                            android:width="50dip"
+                            android:height="50dip"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginRight="4dp"
+                            android:layout_marginBottom="4dp"
+                            android:layout_marginTop="4dp"
+                            android:background="@color/silver" />
+
+                        <TextView
+                            android:id="@+id/histogram_cell_6"
+                            android:gravity="center"
+                            android:paddingBottom="10dip"
+                            android:paddingTop="10dip"
+                            android:width="50dip"
+                            android:height="50dip"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginRight="4dp"
+                            android:layout_marginBottom="4dp"
+                            android:layout_marginTop="4dp"
+                            android:background="@color/silver" />
+
+                        <TextView
+                            android:id="@+id/histogram_cell_7"
+                            android:gravity="center"
+                            android:paddingBottom="10dip"
+                            android:paddingTop="10dip"
+                            android:width="50dip"
+                            android:height="50dip"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginRight="4dp"
+                            android:layout_marginBottom="4dp"
+                            android:layout_marginTop="4dp"
+                            android:background="@color/silver" />
+                        <TextView
+                            android:id="@+id/histogram_cell_8"
+                            android:gravity="center"
+                            android:paddingBottom="10dip"
+                            android:paddingTop="10dip"
+                            android:width="50dip"
+                            android:height="50dip"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginRight="4dp"
+                            android:layout_marginBottom="4dp"
+                            android:layout_marginTop="4dp"
+                            android:background="@color/silver" />
+                        <TextView
+                            android:id="@+id/histogram_cell_9"
+                            android:gravity="center"
+                            android:paddingBottom="10dip"
+                            android:paddingTop="10dip"
+                            android:width="50dip"
+                            android:height="50dip"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginRight="4dp"
+                            android:layout_marginBottom="4dp"
+                            android:layout_marginTop="4dp"
+                            android:background="@color/silver" />
+
+                        <TextView
+                            android:id="@+id/histogram_percentage_60"
+                            android:gravity="center"
+                            android:paddingBottom="10dip"
+                            android:paddingTop="10dip"
+                            android:width="40dip"
+                            android:height="50dip"
+                            android:layout_marginLeft="0dp"
+                            android:layout_marginRight="0dp"
+                            android:layout_marginBottom="4dp"
+                            android:layout_marginTop="4dp"
+                            android:background="@color/white"
+                            android:text="60%"/>
+
+                        <TextView
+                            android:id="@+id/histogram_cell_10"
+                            android:gravity="center"
+                            android:paddingBottom="10dip"
+                            android:paddingTop="10dip"
+                            android:width="50dip"
+                            android:height="50dip"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginRight="4dp"
+                            android:layout_marginBottom="4dp"
+                            android:layout_marginTop="4dp"
+                            android:background="@color/silver" />
+
+                        <TextView
+                            android:id="@+id/histogram_cell_11"
+                            android:gravity="center"
+                            android:paddingBottom="10dip"
+                            android:paddingTop="10dip"
+                            android:width="50dip"
+                            android:height="50dip"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginRight="4dp"
+                            android:layout_marginBottom="4dp"
+                            android:layout_marginTop="4dp"
+                            android:background="@color/silver" />
+
+                        <TextView
+                            android:id="@+id/histogram_cell_12"
+                            android:gravity="center"
+                            android:paddingBottom="10dip"
+                            android:paddingTop="10dip"
+                            android:width="50dip"
+                            android:height="50dip"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginRight="4dp"
+                            android:layout_marginBottom="4dp"
+                            android:layout_marginTop="4dp"
+                            android:background="@color/silver" />
+
+                        <TextView
+                            android:id="@+id/histogram_cell_13"
+                            android:gravity="center"
+                            android:paddingBottom="10dip"
+                            android:paddingTop="10dip"
+                            android:width="50dip"
+                            android:height="50dip"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginRight="4dp"
+                            android:layout_marginBottom="4dp"
+                            android:layout_marginTop="4dp"
+                            android:background="@color/silver" />
+                        <TextView
+                            android:id="@+id/histogram_cell_14"
+                            android:gravity="center"
+                            android:paddingBottom="10dip"
+                            android:paddingTop="10dip"
+                            android:width="50dip"
+                            android:height="50dip"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginRight="4dp"
+                            android:layout_marginBottom="4dp"
+                            android:layout_marginTop="4dp"
+                            android:background="@color/silver" />
+
+
+                        <TextView
+                            android:id="@+id/histogram_percentage_40"
+                            android:gravity="center"
+                            android:paddingBottom="10dip"
+                            android:paddingTop="10dip"
+                            android:width="40dip"
+                            android:height="50dip"
+                            android:layout_marginLeft="0dp"
+                            android:layout_marginRight="0dp"
+                            android:layout_marginBottom="4dp"
+                            android:layout_marginTop="4dp"
+                            android:background="@color/white"
+                            android:text="40%"/>
+
+                        <TextView
+                            android:id="@+id/histogram_cell_15"
+                            android:gravity="center"
+                            android:paddingBottom="10dip"
+                            android:paddingTop="10dip"
+                            android:width="50dip"
+                            android:height="50dip"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginRight="4dp"
+                            android:layout_marginBottom="4dp"
+                            android:layout_marginTop="4dp"
+                            android:background="@color/silver" />
+
+                        <TextView
+                            android:id="@+id/histogram_cell_16"
+                            android:gravity="center"
+                            android:paddingBottom="10dip"
+                            android:paddingTop="10dip"
+                            android:width="50dip"
+                            android:height="50dip"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginRight="4dp"
+                            android:layout_marginBottom="4dp"
+                            android:layout_marginTop="4dp"
+                            android:background="@color/silver" />
+
+                        <TextView
+                            android:id="@+id/histogram_cell_17"
+                            android:gravity="center"
+                            android:paddingBottom="10dip"
+                            android:paddingTop="10dip"
+                            android:width="50dip"
+                            android:height="50dip"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginRight="4dp"
+                            android:layout_marginBottom="4dp"
+                            android:layout_marginTop="4dp"
+                            android:background="@color/silver" />
+                        <TextView
+                            android:id="@+id/histogram_cell_18"
+                            android:gravity="center"
+                            android:paddingBottom="10dip"
+                            android:paddingTop="10dip"
+                            android:width="50dip"
+                            android:height="50dip"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginRight="4dp"
+                            android:layout_marginBottom="4dp"
+                            android:layout_marginTop="4dp"
+                            android:background="@color/silver" />
+                        <TextView
+                            android:id="@+id/histogram_cell_19"
+                            android:gravity="center"
+                            android:paddingBottom="10dip"
+                            android:paddingTop="10dip"
+                            android:width="50dip"
+                            android:height="50dip"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginRight="4dp"
+                            android:layout_marginBottom="4dp"
+                            android:layout_marginTop="4dp"
+                            android:background="@color/silver" />
+
+                        <TextView
+                            android:id="@+id/histogram_percentage_20"
+                            android:gravity="center"
+                            android:paddingBottom="10dip"
+                            android:paddingTop="10dip"
+                            android:width="40dip"
+                            android:height="50dip"
+                            android:layout_marginLeft="0dp"
+                            android:layout_marginRight="0dp"
+                            android:layout_marginBottom="4dp"
+                            android:layout_marginTop="4dp"
+                            android:background="@color/white"
+                            android:text="20%"/>
+
+                        <TextView
+                            android:id="@+id/histogram_cell_20"
+                            android:gravity="center"
+                            android:paddingBottom="10dip"
+                            android:paddingTop="10dip"
+                            android:width="50dip"
+                            android:height="50dip"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginRight="4dp"
+                            android:layout_marginBottom="4dp"
+                            android:layout_marginTop="4dp"
+                            android:background="@color/silver" />
+
+                        <TextView
+                            android:id="@+id/histogram_cell_21"
+                            android:gravity="center"
+                            android:paddingBottom="10dip"
+                            android:paddingTop="10dip"
+                            android:width="50dip"
+                            android:height="50dip"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginRight="4dp"
+                            android:layout_marginBottom="4dp"
+                            android:layout_marginTop="4dp"
+                            android:background="@color/silver" />
+
+                        <TextView
+                            android:id="@+id/histogram_cell_22"
+                            android:gravity="center"
+                            android:paddingBottom="10dip"
+                            android:paddingTop="10dip"
+                            android:width="50dip"
+                            android:height="50dip"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginRight="4dp"
+                            android:layout_marginBottom="4dp"
+                            android:layout_marginTop="4dp"
+                            android:background="@color/silver" />
+                        <TextView
+                            android:id="@+id/histogram_cell_23"
+                            android:gravity="center"
+                            android:paddingBottom="10dip"
+                            android:paddingTop="10dip"
+                            android:width="50dip"
+                            android:height="50dip"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginRight="4dp"
+                            android:layout_marginBottom="4dp"
+                            android:layout_marginTop="4dp"
+                            android:background="@color/silver" />
+                        <TextView
+                            android:id="@+id/histogram_cell_24"
+                            android:gravity="center"
+                            android:paddingBottom="10dip"
+                            android:paddingTop="10dip"
+                            android:width="50dip"
+                            android:height="50dip"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginRight="4dp"
+                            android:layout_marginBottom="4dp"
+                            android:layout_marginTop="4dp"
+                            android:background="@color/silver" />
+
+                    </GridLayout>
+
+                    <GridLayout
+                        android:id="@+id/percentages"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:columnCount="6">
+
+                        <TextView
+                            android:gravity="center"
+                            android:paddingBottom="10dip"
+                            android:paddingTop="10dip"
+                            android:width="40dip"
+                            android:height="50dip"
+                            android:layout_marginLeft="0dp"
+                            android:layout_marginRight="0dp"
+                            android:layout_marginBottom="4dp"
+                            android:layout_marginTop="4dp"
+                            android:background="@color/white"
+                            android:text=" "/>
+
+                        <TextView
+                            android:id="@+id/zone1_pc"
+                            android:gravity="center"
+                            android:paddingBottom="10dip"
+                            android:paddingTop="10dip"
+                            android:width="50dip"
+                            android:height="50dip"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginRight="4dp"
+                            android:layout_marginBottom="4dp"
+                            android:layout_marginTop="4dp"
+                            android:background="@color/white"
+                            android:text=" "  />
+
+                        <TextView
+                            android:id="@+id/zone2_pc"
+                            android:gravity="center"
+                            android:paddingBottom="10dip"
+                            android:paddingTop="10dip"
+                            android:width="50dip"
+                            android:height="50dip"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginRight="4dp"
+                            android:layout_marginBottom="4dp"
+                            android:layout_marginTop="4dp"
+                            android:background="@color/white"
+                            android:text=" "/>
+
+                        <TextView
+                            android:id="@+id/zone3_pc"
+                            android:gravity="center"
+                            android:paddingBottom="10dip"
+                            android:paddingTop="10dip"
+                            android:width="50dip"
+                            android:height="50dip"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginRight="4dp"
+                            android:layout_marginBottom="4dp"
+                            android:layout_marginTop="4dp"
+                            android:background="@color/white"
+                            android:text=" "/>
+
+                        <TextView
+                            android:id="@+id/zone4_pc"
+                            android:gravity="center"
+                            android:paddingBottom="10dip"
+                            android:paddingTop="10dip"
+                            android:width="50dip"
+                            android:height="50dip"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginRight="4dp"
+                            android:layout_marginBottom="4dp"
+                            android:layout_marginTop="4dp"
+                            android:background="@color/white"
+                            android:text=" "/>
+
+                        <TextView
+                            android:id="@+id/zone5_pc"
+                            android:gravity="center"
+                            android:paddingBottom="10dip"
+                            android:paddingTop="10dip"
+                            android:width="50dip"
+                            android:height="50dip"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginRight="4dp"
+                            android:layout_marginBottom="4dp"
+                            android:layout_marginTop="4dp"
+                            android:background="@color/white"
+                            android:text=" "/>
+
+                    </GridLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+</LinearLayout>

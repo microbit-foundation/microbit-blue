@@ -1,0 +1,77 @@
+<!--
+/*
+ * Author: Martin Woolley
+ * Twitter: @bluetooth_mdw
+ *
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
+-->
+<html>
+<head>
+    <LINK href="file:///android_asset/help/help_style.css" type="text/css" rel="stylesheet">
+</head>
+<img>
+<h1>Device List</h1>
+<h2>Where to get help</h2>
+<p>Right here! But if you still need more help here are some options:</p>
+<p>1. Twitter: Follow me on Twitter and ask me a question. My Twitter handle is @bluetooth_mdw</p>
+<p>2. <a href="http://bluetooth-mdw.blogspot.co.uk/p/bbc-microbit.html">My micro:bit resources page on my blog</a></p>
+<h2>Getting Started</h2>
+<p>To use this application with your micro:bit you must do three things first:</p>
+<h3>1. Pair your micro:bit with your phone or tablet</h3>
+<p>You can pair your micro:bit with your phone quite easily using the Bluetooth screen within Android's Settings screen. The best way to learn how to pair with your micro:bit is to watch it being done by someone else. To that end I made a video showing the procedure:</p>
+<p><a href="https://www.youtube.com/watch?v=7hLBfdAGkZI">Video: Pairing your phone with your micro:bit</a></p>
+<p>The pairing procedure is described below as well if you prefer to read rather than watch.</p>
+<p>Pairing makes your phone and micro:bit know and trust each other. Behind the scenes it equips them each with various encryption keys which they can use for security purposes.</p>
+<p>You do not need to pair your micro:bit and phone every time your use them together. They will stay paired until either one of the two devices 'forgets' about the other. How  might this happen?</p>
+<p>If you load a new hex file onto your micro:bit using a USB cable, your micro:bit will lose those encryption keys that were created when pairing. In other words it will 'forget' it was paired with your phone. So if you do use USB to flash a hex file then you will need to select your micro:bit in Android's Settings/Bluetooth screen and then select the Forget option to clear it from your phone. You'll then need to go through the pairing procedure again.</p>
+<p>If you flash your hex file onto your micro:bit using Bluetooth, perhaps with the Samsung micro:bit application, you should not need to pair again. Flashing the micro:bit over Bluetooth does not erase those pairing keys.</p>
+<h3>2. Load a suitable hex file onto your micro:bit</h3>
+<p>You'll need a hex file that contains the micro:bit Bluetooth 'services' which are needed (see below) and to flash it to your micro:bit. As mentioned you can do this over USB (and will need to pair again) or over Bluetooth using an application like the Samsung micro:bit app (and will not need to pair again).</p>
+<p>You can either load a hex file that someone else created or make one yourself. I have a list of hex files which you can use with this application available for download from </p>
+<p><a href="http://bluetooth-mdw.blogspot.co.uk/p/bbc-microbit.html">micro:bit hex files for Bluetooth uses</a></p>
+<p>When you unboxed your micro:bit it's probable it had all of the various Bluetooth 'services' on it but if you've flashed it with a hex file you made using one of the microbit.co.uk editors, you will have lost the majority of those services, by the way.</p>
+<p>For a more advanced tutorial on making your own hex files in a way which gives you complete control over its Bluetooth capabilities I made a video explaining this:</p>
+<p><a href="https://www.youtube.com/watch?v=LEQO_9NVTpE">Using C/C++ to make a micro:bit hex file</a></p>
+<h3>3. Allow Bluetooth scanning to be performed</h3>
+<p>On phones running the latest Android version, the first time you select the "FIND PAIRED BBC MICRO:BIT(s)" button you will get a dialogue pop up indicated that permission is required. You're being asked to let the application perform Bluetooth scanning which is how your micro:bit will be found (your micro:bit by the way is 'advertising' so it can be found). You should grant permission by selecting 'Allow' and then select the FIND... button again.</p>
+<h2>Finding Your micro:bit</h2>
+<p>To use any of the demos in this application, the first thing you must do is tell your phone to try to detect your micro:bit using Bluetooth.</p>
+<p>Start by pressing the FIND button at the foot of the first screen and this will
+    cause your phone to start scanning for micro:bit devices which are within Bluetooth range. </p>
+<p class="important_text">IMPORTANT:</p>
+<p>By default, only micro:bits you have paired your phone with will be listed for selection. If you haven't yet paired your device then follow the instructions in the 'Pairing' section below and then return to this application and select FIND again.</p>
+<p>To allow the application to be used with micro:bit firmware builds which do not implement Bluetooth security, you can disable the filtering on non-paired devices from within the Settings screen which is accessible from the overflow menu.
+</p>
+<h2>PAIRING</h2>
+<p>To pair your micro:bit with your phone go into the Android Settings screen and select Bluetooth.
+    If your micro:bit is powered on and in range then you should see it listed in the bottom part of the Bluetooth Settings screen in a section probably entitled "Available Devices".</p>
+<img src="file:///android_asset/help/pairing.png"/>
+<p>Switch your micro:bit into "PAIRING MODE" mode by holding down buttons A and B together and then pressing the reset button on the back of the micro:bit,
+    continuing to hold buttons A and B for a sdecond or two.</p>
+<p>1. micro:bit shown as available but not paired in Android Settings, Bluetooth screen</p>
+<p>2. Enter the 6 digit number which your micro:bit will display when put into BLUEZONE mode in this pop up dialogue</p>
+<p>3. micro:bit now shown as paired. Now try to find it again from the first screen of this application.</p>
+<h2>The Code</h2>
+<p>The source code of this application *will* be released. The release date is being coordinated with the BBC and expected to be mid-July 2016. If you are interested in learning how to create Android applications which work with your micro:bit over Bluetooth, this should be a great resource to help you learn. If you want to start learning about Android development right now then download Android Studio to your PC and find some tutorials for yourself. You'll be programming using the Java language. Good luck!</p>
+<p>This application uses a very simple pattern of Java classes. All of the main Bluetooth code which actually interacts with the micro:bit is in a class called BleAdapter. Each demo has a dedicated class with the word 'Activity' in it
+    such as ButtonActivity. Settings screens have the word 'Settings' in their class name and Help screens have the word 'Help' in their name. It's not
+    rocket science :-)</p>
+<p>There a few other interesting Java classes that fall outside of these main types of class and I'll describe them next.</p>
+<p>
+    All the code for this demo can be found in ui.MainActivity.java except for the Bluetooth operations which are in bluetooth.BleAdapterService.
+</p>
+
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!--
+/*
+ * Author: Martin Woolley
+ * Twitter: @bluetooth_mdw
+ *
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
+-->
+<html>
+<head>
+    <LINK href="file:///android_asset/help/help_style.css" type="text/css" rel="stylesheet">
+</head>
+<img>
+<h1>Buttons</h1>
+<h2>The Demo</h2>
+<p>The micro:bit has two buttons on the side which has the LED display and these are called Button A and Button B. The Bluetooth profile lets you tell the micro:bit that your application should be informed whenever one or both of those buttons are pressed.</p>
+<p>In fact it's even better than that.</p>
+<p>Each button can be in one of three 'states'. These states are NOT PRESSED, PRESSED or LONG PRESS. What the first two mean is pretty obvious. A button is said to be in the LONG PRESS state when it's been pressed and held down for at least 2 seconds.</p>
+<p>This demo shows a very simple example of how you can have the micro:bit communicate button interactions with a connected application like this one.</p>
+<h2>The Code</h2>
+<p>The Bluetooth profile includes a service called the Button Service. It contains two characteristics called Button A State and Button B State. Each of these characteristics supports Bluetooth notifications and so one of the
+    first things the ButtonActivity class does is to enable those notifications by writing to their associated Client Characteristic Configuration Descriptors with a call to bluetooth_le_adapter.setNotificationsState. Having done so, every time you press a button on the micro:bit, this application
+    receives a notification message containing the value of the characteristic. Three possible values are defined: 0 = not pressed, 1 = pressed, 2 = long press.
+</p>
+<p>
+    All the code for this demo can be found in ui.ButtonActivity.java except for the Bluetooth operations which are in bluetooth.BleAdapterService.
+</p>
+
+</body>
+</html>

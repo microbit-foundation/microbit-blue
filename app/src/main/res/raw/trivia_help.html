@@ -1,0 +1,162 @@
+<!--
+/*
+ * Author: Martin Woolley
+ * Twitter: @bluetooth_mdw
+ *
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
+-->
+<html>
+<head>
+    <LINK href="file:///android_asset/help/help_style.css" type="text/css" rel="stylesheet">
+</head>
+<img>
+<h1>Trivia Scoreboard</h1>
+<h2>The Demo</h2>
+<p>
+    This is not so much a demo as... something I created to help me deliver a training course to 100 people. To keep things interesting, I included a trivia quiz with questions for my audience from each of the usual 6 categories interspersed with the training material. Each time a question was correctly answered I "awarded" a star for the relevant category using my micro:bit.
+</p>
+<p>
+Given I have 6 categories, I used buttons A, B and AB and the current micro:bit orientation (face up or face down) to give me 6 states with which to signal a particular category having been completed. Try it and you'll see!
+</p>
+<p>
+
+</p>
+<h2>The Code</h2>
+<p>The Bluetooth profile includes a service called the Event Service. This is used to allow the micro:bit to send events with any of 6 possible values to this application.
+</p>
+<p>
+</p>
+<p>
+    Your micro:bit needs the following code in main.cpp for this demo to work
+</p>
+<p>
+<pre>
+#include "MicroBit.h"
+#include "MicroBitSamples.h"
+
+#ifdef MICROBIT_TRIVIA
+
+MicroBit uBit;
+
+#define MES_TRIVIA                 1300
+
+#define MES_TRIVIA_BLUE            1
+#define MES_TRIVIA_PINK            2
+#define MES_TRIVIA_YELLOW          3
+
+#define MES_TRIVIA_BROWN           4
+#define MES_TRIVIA_GREEN           5
+#define MES_TRIVIA_ORANGE          6
+
+int connected = 0;
+
+void onConnected(MicroBitEvent e)
+{
+    uBit.display.print("C");
+    connected = 1;
+}
+
+void onDisconnected(MicroBitEvent e)
+{
+    uBit.display.print("D");
+    connected = 0;
+}
+
+int getGesture() {
+    int x = uBit.accelerometer.getX();
+    int y = uBit.accelerometer.getY();
+    return uBit.accelerometer.getGesture();
+}
+
+void onButtonA(MicroBitEvent e)
+{
+    if (connected == 0) {
+        uBit.display.scroll("NC");
+        return;
+    }
+
+    if (getGesture() == MICROBIT_ACCELEROMETER_EVT_FACE_UP || getGesture() == MICROBIT_ACCELEROMETER_EVT_NONE) {
+        MicroBitEvent evt(MES_TRIVIA, MES_TRIVIA_BLUE);
+    } else {
+        MicroBitEvent evt(MES_TRIVIA, MES_TRIVIA_BROWN);
+    }
+
+}
+
+void onButtonB(MicroBitEvent e)
+{
+    if (connected == 0) {
+        uBit.display.scroll("NC");
+        return;
+    }
+    if (getGesture() == MICROBIT_ACCELEROMETER_EVT_FACE_UP || getGesture() == MICROBIT_ACCELEROMETER_EVT_NONE) {
+        MicroBitEvent evt(MES_TRIVIA, MES_TRIVIA_PINK);
+    } else {
+        MicroBitEvent evt(MES_TRIVIA, MES_TRIVIA_GREEN);
+    }
+}
+
+void onButtonAB(MicroBitEvent e)
+{
+    if (connected == 0) {
+        uBit.display.scroll("NC");
+        return;
+    }
+    if (getGesture() == MICROBIT_ACCELEROMETER_EVT_FACE_UP || getGesture() == MICROBIT_ACCELEROMETER_EVT_NONE) {
+        MicroBitEvent evt(MES_TRIVIA, MES_TRIVIA_YELLOW);
+    } else {
+        MicroBitEvent evt(MES_TRIVIA, MES_TRIVIA_ORANGE);
+    }
+}
+
+void onGesture(MicroBitEvent e) {
+    uBit.display.scroll("E");
+    if (connected) {
+      uBit.display.print("C");
+    } else {
+      uBit.display.print("D");
+    }
+}
+
+int main()
+{
+    // Initialise the micro:bit runtime.
+    uBit.init();
+
+    uBit.display.scroll("TRIVIA");
+
+    uBit.messageBus.listen(MICROBIT_ID_BLE, MICROBIT_BLE_EVT_CONNECTED, onConnected);
+    uBit.messageBus.listen(MICROBIT_ID_BLE, MICROBIT_BLE_EVT_DISCONNECTED, onDisconnected);
+    uBit.messageBus.listen(MICROBIT_ID_BUTTON_A, MICROBIT_BUTTON_EVT_CLICK, onButtonA);
+    uBit.messageBus.listen(MICROBIT_ID_BUTTON_B, MICROBIT_BUTTON_EVT_CLICK, onButtonB);
+    uBit.messageBus.listen(MICROBIT_ID_BUTTON_AB, MICROBIT_BUTTON_EVT_CLICK, onButtonAB);
+
+    uBit.messageBus.listen(MICROBIT_ACCELEROMETER_EVT_DATA_UPDATE, MICROBIT_ACCELEROMETER_EVT_FACE_UP, onGesture);
+    uBit.messageBus.listen(MICROBIT_ACCELEROMETER_EVT_DATA_UPDATE, MICROBIT_ACCELEROMETER_EVT_FACE_DOWN, onGesture);
+
+
+
+    // If main exits, there may still be other fibers running or registered event handlers etc.
+    // Simply release this fiber, which will mean we enter the scheduler. Worse case, we then
+    // sit in the idle task forever, in a power efficient sleep.
+    release_fiber();
+}
+
+#endif
+
+</pre>
+</p>
+</body>
+</html>

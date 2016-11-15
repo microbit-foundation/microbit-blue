@@ -1,0 +1,42 @@
+<!--
+/*
+ * Author: Martin Woolley
+ * Twitter: @bluetooth_mdw
+ *
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
+-->
+<html>
+<head>
+    <LINK href="file:///android_asset/help/help_style.css" type="text/css" rel="stylesheet">
+</head>
+<img>
+<h1>Accelerometer</h1>
+<h2>The Demo</h2>
+<p>The BBC micro:bit contains an accelerometer or motion detector. This demo shows how you can obtain motion data over a Bluetooth Low Energy connection and use it in an application.</p>
+<h2>The Code</h2>
+<p>Accelerometer data may be obtained from the Bluetooth Accelerometer Service. Each time the accelerometer is polled, an X, Y and Z value becomes available. All three values may be transmitted to the connected client (e.g. this application) as a Bluetooth Notification. To make this happen, the code must first subscribe
+    to notifications relating to the Accelerometer Data characteristic by setting its associated Client Characteristic Configuration Descriptor (CCCD) to 0x0100. Once this has been done, notification messages will be delivered to the BleAdapterService object and from there passed as a Message to the AccelerometerActivity object for processing.
+</p>
+<p>You can control how often the accelerometer is polled via the Settings screen. When you change the polling frequency, the new value is sent to the micro:bit by writing it to the Accelerometer Service's Accelerometer Period characteristic.
+</p>
+<p>
+Raw accelerometer data from the micro:bit can be a bit jerky and so a low pass filter function is used to smooth the data. Have a look at the lowPass function in the Utility class to see how this works.
+</p>
+<p>
+    All the code for this demo can be found in ui.AccelerometerActivity.java except for the Bluetooth operations which are in bluetooth.BleAdapterService.
+</p>
+
+</body>
+</html>

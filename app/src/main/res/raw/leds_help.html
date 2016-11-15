@@ -1,0 +1,57 @@
+<!--
+/*
+ * Author: Martin Woolley
+ * Twitter: @bluetooth_mdw
+ *
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
+-->
+<html>
+<head>
+    <LINK href="file:///android_asset/help/help_style.css" type="text/css" rel="stylesheet">
+</head>
+<img>
+<h1>LED DISPLAY</h1>
+<h2>The Demo</h2>
+<p>The BBC micro:bit has a 5 x 5 LED matrix on one side. You can use this in various ways over Bluetooth. You can change the state of all LEDs in the display matrix in a single Bluetooth write operation or you can send text to the micro:bit and watch it scroll across the display.</p>
+<p>You can also configure how fast or slow text scrolls at. Take a look in the Settings menu and you'll see you can specify a scrolling delay value in milliseconds. The higher the value, the slower the text will scroll and vice versa</p>
+<h2>The Code</h2>
+<p>
+    This demo uses the Bluetooth LED Service which contains three characteristics.
+</p>
+<p>
+    The LED Matrix State characteristic has a value part which consists of 5 bytes, one for each row of the display with bits 4 to 0 representing the column within that row. A bit value of 1 means the LED is on and a value of 0 means it is off. 
+</p>
+<p>
+So we have:<br/><br/>
+Octet 0 - LED Row 1: bit4 bit3 bit2 bit1 bit0<br/>
+Octet 1 - LED Row 2: bit4 bit3 bit2 bit1 bit0<br/>
+Octet 2 - LED Row 3: bit4 bit3 bit2 bit1 bit0<br/>
+Octet 3 - LED Row 4: bit4 bit3 bit2 bit1 bit0<br/>
+Octet 4 - LED Row 5: bit4 bit3 bit2 bit1 bit0<br/>
+</p>
+<p>    
+    Writing a new value to this characteristic will cause the micro:bit display to reflect the bit pattern provided.
+</p>
+<p>
+    The LED Text characteristic takes a short (max 20 characters) UTF8 string as a value. Writing a value to this characteristic causes the text value to scroll across the micro:bit display at a speed determined by the value of the Scrolling Delay characteristic value.
+</p>
+<p>
+    The Scrolling Delay characteristic takes a millisecond value. This determines how long the micro:bit pauses for with a character showing on its LED display before scrolling it off to the left and scrolling the next character in from the right.
+</p>
+<p>
+    All the code for this demo can be found in ui.LEDsActivity.java except for the Bluetooth operations which are in bluetooth.BleAdapterService.
+</p>
+</body>
+</html>

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.bluetooth.mwoolley.microbitbledemo">
+
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".ui.MainActivity"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.MainSettingsActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".ui.HelpActivity"
+            android:screenOrientation="portrait"
+            android:label="@string/app_name"></activity>
+        <activity
+            android:name=".ui.MenuActivity"
+            android:screenOrientation="portrait"
+            android:label="@string/app_name"></activity>
+        <activity
+            android:name=".ui.ServicesPresentActivity"
+            android:screenOrientation="portrait"
+            android:label="@string/app_name"></activity>
+        <activity
+            android:name=".ui.AccelerometerActivity"
+            android:screenOrientation="portrait"
+            android:label="@string/app_name"></activity>
+        <activity
+            android:name=".ui.AccelerometerSettingsActivity"
+            android:screenOrientation="portrait"
+            android:label="@string/app_name"></activity>
+        <activity
+            android:name=".ui.MagnetometerActivity"
+            android:screenOrientation="portrait"
+            android:label="@string/app_name"></activity>
+        <activity
+            android:name=".ui.MagnetometerSettingsActivity"
+            android:screenOrientation="portrait"
+            android:label="@string/app_name"></activity>
+        <activity
+            android:name=".ui.ButtonActivity"
+            android:screenOrientation="portrait"
+            android:label="@string/app_name"></activity>
+        <activity
+            android:name=".ui.AnimalsActivity"
+            android:screenOrientation="portrait"
+            android:label="@string/app_name"></activity>
+        <activity
+            android:name=".ui.LEDsActivity"
+            android:screenOrientation="portrait"
+            android:label="@string/app_name"></activity>
+        <activity
+            android:name=".ui.LEDsSettingsActivity"
+            android:screenOrientation="portrait"
+            android:label="@string/app_name"></activity>
+        <activity
+            android:name=".ui.TemperatureActivity"
+            android:screenOrientation="portrait"
+            android:label="@string/app_name"></activity>
+        <activity
+            android:name=".ui.IoDigitalOutputActivity"
+            android:screenOrientation="portrait"
+            android:label="@string/app_name"></activity>
+        <activity
+            android:name=".ui.IoInputActivity"
+            android:screenOrientation="portrait"
+            android:label="@string/app_name"></activity>
+        <activity
+            android:name=".ui.TemperatureAlarmActivity"
+            android:screenOrientation="portrait"
+            android:label="@string/app_name"></activity>
+        <activity
+            android:name=".ui.TemperatureAlarmSettingsActivity"
+            android:screenOrientation="portrait"
+            android:label="@string/app_name"></activity>
+        <activity
+            android:name=".ui.DeviceInformationActivity"
+            android:screenOrientation="portrait"
+            android:label="@string/app_name"></activity>
+        <activity
+            android:name=".ui.SquirrelCounterActivity"
+            android:screenOrientation="portrait"
+            android:label="@string/app_name"></activity>
+        <activity android:name=".ui.GamepadControllerActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="landscape" >
+        </activity>
+        <activity android:name=".ui.GamepadControllerSettingsActivity"
+            android:label="@string/app_name">
+        </activity>
+        <activity android:name=".ui.HrmListActivity"
+            android:label="@string/app_name">
+        </activity>
+        <activity android:name=".ui.HrmActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".ui.HrmSettingsActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".ui.UartAvmActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".ui.TrivaScoreBoardControllerActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
+        </activity>
+        <service
+            android:name=".bluetooth.BleAdapterService"
+            android:enabled="true" />
+        <service
+            android:name=".bluetooth.HrmAdapterService"
+            android:enabled="true" />
+
+    </application>
+
+
+</manifest>

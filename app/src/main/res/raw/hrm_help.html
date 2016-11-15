@@ -1,0 +1,79 @@
+<!--
+/*
+ * Author: Martin Woolley
+ * Twitter: @bluetooth_mdw
+ *
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
+-->
+<html>
+<head>
+    <LINK href="file:///android_asset/help/help_style.css" type="text/css" rel="stylesheet">
+</head>
+<)img>
+<h1>Heart Rate Histogram</h1>
+<h2>The Demo</h2>
+<p>Sporty types like runners and cyclists sometimes use a technique called Heart Rate Training Zones
+    to train and improve their performance. It involves wearing a heart rate monitor during training
+    sessions to collect a fairly comprehensive set of heart rate measurements. The data is usually
+    divided into 5 'zones', each with an upper heart rate value, measured in beats per minute (BPM)
+    and a histogram showing the proportion of time the heart rate was in each of the 5 zones is
+    displayed on a suitable device like a smartphone or a specialised cycling computer.
+</p>
+<p>
+    Bluetooth is often used to transmit heart rate readings from the heart rate monitor to the
+    device which displays the zone histrogram and the Bluetooth SIG have published a standard heart
+     rate service for this purpose.
+</p>
+<p>
+    This demo is designed to work with a smartphone running this application connected to both a
+    heart rate monitor and a BBC micro:bit. Data is analysed on the smartphone and slotted into
+    appropriate zones. The smartphone displays the zone histogram as data is processed and also
+    displays the same histogram on the micro:bit at the same time. The micro:bit provides a nice,
+    small wearable heart rate zone monitoring device which you can check easily whilst training.
+</p>
+<h2>The Code</h2>
+<p>
+    No special code is needed on the micro:bit other than a standard micro:bit run-time which
+    includes the LED Service.
+</p>
+<p>
+    The demo code connects to the selected heart rate monitor and subscribes to notifications
+    relating to the Heart Rate Measurement characteristic. Each time a notification is received,
+    histogram data is updated along with a matrix which represents the intended status of both the
+     micro:bit display and the smartphone display.
+</p>
+<p>
+    Once per second, the two displays are updated from the in-memory matrices. Note that with the
+    micro:bit having a 5 x 5 LED display, each column corresponds to one of the 5 heart rate zones
+    and each row represents a multiple of 20% of heart rate measurements which were within the
+    bounds of the zone the LED sits within. A flashing LED means that more the percentage value in
+    this column is more than 10% but less then 20% above the value represented by the LED row below.
+</p>
+<p>
+    So, for example if column 2 has 2 solid LEDs and one flashing LED is means that more than 50%
+    but less than 60% of the heart rate measurements received so far had a BPM value in the zone
+    2 range.
+</p>
+<p>
+    You can define the boundaries of your heart rate zones in the Settings page attached to the
+    menu of this screen. Your selected values will be saved and restored next time you run the
+    application.
+</p>
+<p>
+    Happy micro:bit training!
+</p>
+
+</body>
+</html>

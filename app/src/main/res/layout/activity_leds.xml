@@ -1,0 +1,422 @@
+<!--
+/*
+ * Author: Martin Woolley
+ * Twitter: @bluetooth_mdw
+ *
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:paddingBottom="10dip"
+    android:paddingLeft="10dip"
+    android:paddingTop="10dip">
+
+    <TextView
+        android:id="@+id/message"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingLeft="10dip"
+        android:background="@color/message_background"
+        android:textSize="16dp"
+        android:text="" />
+
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/deviceView"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical"
+            android:paddingBottom="10dip"
+            android:paddingLeft="10dip"
+            android:paddingTop="10dip">
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:paddingBottom="5dip">
+
+
+                <GridLayout
+                    android:id="@+id/grid"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:columnCount="5">
+
+                    <TextView
+                        android:id="@+id/led0"
+                        android:gravity="center"
+                        android:paddingBottom="10dip"
+                        android:paddingTop="10dip"
+                        android:width="50dip"
+                        android:height="50dip"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginRight="4dp"
+                        android:layout_marginBottom="4dp"
+                        android:layout_marginTop="4dp"
+                        android:background="@color/silver" />
+
+                    <TextView
+                        android:id="@+id/led1"
+                        android:gravity="center"
+                        android:paddingBottom="10dip"
+                        android:paddingTop="10dip"
+                        android:width="50dip"
+                        android:height="50dip"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginRight="4dp"
+                        android:layout_marginBottom="4dp"
+                        android:layout_marginTop="4dp"
+                        android:background="@color/silver" />
+
+                    <TextView
+                        android:id="@+id/led2"
+                        android:gravity="center"
+                        android:paddingBottom="10dip"
+                        android:paddingTop="10dip"
+                        android:width="50dip"
+                        android:height="50dip"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginRight="4dp"
+                        android:layout_marginBottom="4dp"
+                        android:layout_marginTop="4dp"
+                        android:background="@color/silver" />
+
+                    <TextView
+                        android:id="@+id/led3"
+                        android:gravity="center"
+                        android:paddingBottom="10dip"
+                        android:paddingTop="10dip"
+                        android:width="50dip"
+                        android:height="50dip"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginRight="4dp"
+                        android:layout_marginBottom="4dp"
+                        android:layout_marginTop="4dp"
+                        android:background="@color/silver" />
+                    <TextView
+                        android:id="@+id/led4"
+                        android:gravity="center"
+                        android:paddingBottom="10dip"
+                        android:paddingTop="10dip"
+                        android:width="50dip"
+                        android:height="50dip"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginRight="4dp"
+                        android:layout_marginBottom="4dp"
+                        android:layout_marginTop="4dp"
+                        android:background="@color/silver" />
+
+
+                    <TextView
+                        android:id="@+id/led5"
+                        android:gravity="center"
+                        android:paddingBottom="10dip"
+                        android:paddingTop="10dip"
+                        android:width="50dip"
+                        android:height="50dip"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginRight="4dp"
+                        android:layout_marginBottom="4dp"
+                        android:layout_marginTop="4dp"
+                        android:background="@color/silver" />
+
+                    <TextView
+                        android:id="@+id/led6"
+                        android:gravity="center"
+                        android:paddingBottom="10dip"
+                        android:paddingTop="10dip"
+                        android:width="50dip"
+                        android:height="50dip"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginRight="4dp"
+                        android:layout_marginBottom="4dp"
+                        android:layout_marginTop="4dp"
+                        android:background="@color/silver" />
+
+                    <TextView
+                        android:id="@+id/led7"
+                        android:gravity="center"
+                        android:paddingBottom="10dip"
+                        android:paddingTop="10dip"
+                        android:width="50dip"
+                        android:height="50dip"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginRight="4dp"
+                        android:layout_marginBottom="4dp"
+                        android:layout_marginTop="4dp"
+                        android:background="@color/silver" />
+                    <TextView
+                        android:id="@+id/led8"
+                        android:gravity="center"
+                        android:paddingBottom="10dip"
+                        android:paddingTop="10dip"
+                        android:width="50dip"
+                        android:height="50dip"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginRight="4dp"
+                        android:layout_marginBottom="4dp"
+                        android:layout_marginTop="4dp"
+                        android:background="@color/silver" />
+                    <TextView
+                        android:id="@+id/led9"
+                        android:gravity="center"
+                        android:paddingBottom="10dip"
+                        android:paddingTop="10dip"
+                        android:width="50dip"
+                        android:height="50dip"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginRight="4dp"
+                        android:layout_marginBottom="4dp"
+                        android:layout_marginTop="4dp"
+                        android:background="@color/silver" />
+
+                    <TextView
+                        android:id="@+id/led10"
+                        android:gravity="center"
+                        android:paddingBottom="10dip"
+                        android:paddingTop="10dip"
+                        android:width="50dip"
+                        android:height="50dip"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginRight="4dp"
+                        android:layout_marginBottom="4dp"
+                        android:layout_marginTop="4dp"
+                        android:background="@color/silver" />
+
+                    <TextView
+                        android:id="@+id/led11"
+                        android:gravity="center"
+                        android:paddingBottom="10dip"
+                        android:paddingTop="10dip"
+                        android:width="50dip"
+                        android:height="50dip"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginRight="4dp"
+                        android:layout_marginBottom="4dp"
+                        android:layout_marginTop="4dp"
+                        android:background="@color/silver" />
+
+                    <TextView
+                        android:id="@+id/led12"
+                        android:gravity="center"
+                        android:paddingBottom="10dip"
+                        android:paddingTop="10dip"
+                        android:width="50dip"
+                        android:height="50dip"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginRight="4dp"
+                        android:layout_marginBottom="4dp"
+                        android:layout_marginTop="4dp"
+                        android:background="@color/silver" />
+
+                    <TextView
+                        android:id="@+id/led13"
+                        android:gravity="center"
+                        android:paddingBottom="10dip"
+                        android:paddingTop="10dip"
+                        android:width="50dip"
+                        android:height="50dip"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginRight="4dp"
+                        android:layout_marginBottom="4dp"
+                        android:layout_marginTop="4dp"
+                        android:background="@color/silver" />
+                    <TextView
+                        android:id="@+id/led14"
+                        android:gravity="center"
+                        android:paddingBottom="10dip"
+                        android:paddingTop="10dip"
+                        android:width="50dip"
+                        android:height="50dip"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginRight="4dp"
+                        android:layout_marginBottom="4dp"
+                        android:layout_marginTop="4dp"
+                        android:background="@color/silver" />
+
+
+                    <TextView
+                        android:id="@+id/led15"
+                        android:gravity="center"
+                        android:paddingBottom="10dip"
+                        android:paddingTop="10dip"
+                        android:width="50dip"
+                        android:height="50dip"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginRight="4dp"
+                        android:layout_marginBottom="4dp"
+                        android:layout_marginTop="4dp"
+                        android:background="@color/silver" />
+
+                    <TextView
+                        android:id="@+id/led16"
+                        android:gravity="center"
+                        android:paddingBottom="10dip"
+                        android:paddingTop="10dip"
+                        android:width="50dip"
+                        android:height="50dip"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginRight="4dp"
+                        android:layout_marginBottom="4dp"
+                        android:layout_marginTop="4dp"
+                        android:background="@color/silver" />
+
+                    <TextView
+                        android:id="@+id/led17"
+                        android:gravity="center"
+                        android:paddingBottom="10dip"
+                        android:paddingTop="10dip"
+                        android:width="50dip"
+                        android:height="50dip"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginRight="4dp"
+                        android:layout_marginBottom="4dp"
+                        android:layout_marginTop="4dp"
+                        android:background="@color/silver" />
+                    <TextView
+                        android:id="@+id/led18"
+                        android:gravity="center"
+                        android:paddingBottom="10dip"
+                        android:paddingTop="10dip"
+                        android:width="50dip"
+                        android:height="50dip"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginRight="4dp"
+                        android:layout_marginBottom="4dp"
+                        android:layout_marginTop="4dp"
+                        android:background="@color/silver" />
+                    <TextView
+                        android:id="@+id/led19"
+                        android:gravity="center"
+                        android:paddingBottom="10dip"
+                        android:paddingTop="10dip"
+                        android:width="50dip"
+                        android:height="50dip"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginRight="4dp"
+                        android:layout_marginBottom="4dp"
+                        android:layout_marginTop="4dp"
+                        android:background="@color/silver" />
+
+                    <TextView
+                        android:id="@+id/led20"
+                        android:gravity="center"
+                        android:paddingBottom="10dip"
+                        android:paddingTop="10dip"
+                        android:width="50dip"
+                        android:height="50dip"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginRight="4dp"
+                        android:layout_marginBottom="4dp"
+                        android:layout_marginTop="4dp"
+                        android:background="@color/silver" />
+
+                    <TextView
+                        android:id="@+id/led21"
+                        android:gravity="center"
+                        android:paddingBottom="10dip"
+                        android:paddingTop="10dip"
+                        android:width="50dip"
+                        android:height="50dip"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginRight="4dp"
+                        android:layout_marginBottom="4dp"
+                        android:layout_marginTop="4dp"
+                        android:background="@color/silver" />
+
+                    <TextView
+                        android:id="@+id/led22"
+                        android:gravity="center"
+                        android:paddingBottom="10dip"
+                        android:paddingTop="10dip"
+                        android:width="50dip"
+                        android:height="50dip"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginRight="4dp"
+                        android:layout_marginBottom="4dp"
+                        android:layout_marginTop="4dp"
+                        android:background="@color/silver" />
+                    <TextView
+                        android:id="@+id/led23"
+                        android:gravity="center"
+                        android:paddingBottom="10dip"
+                        android:paddingTop="10dip"
+                        android:width="50dip"
+                        android:height="50dip"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginRight="4dp"
+                        android:layout_marginBottom="4dp"
+                        android:layout_marginTop="4dp"
+                        android:background="@color/silver" />
+                    <TextView
+                        android:id="@+id/led24"
+                        android:gravity="center"
+                        android:paddingBottom="10dip"
+                        android:paddingTop="10dip"
+                        android:width="50dip"
+                        android:height="50dip"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginRight="4dp"
+                        android:layout_marginBottom="4dp"
+                        android:layout_marginTop="4dp"
+                        android:background="@color/silver" />
+
+                </GridLayout>
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/setDisplay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Set Display"
+                android:onClick="onSetDisplay"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:textStyle="bold"
+                android:textSize="18dp"
+                android:text="@string/display_text"/>
+
+            <EditText
+                android:id="@+id/display_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLength="20"
+                android:text="Hello!"/>
+
+            <Button
+                android:id="@+id/setText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Send Text"
+                android:onClick="onSendText"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+</LinearLayout>

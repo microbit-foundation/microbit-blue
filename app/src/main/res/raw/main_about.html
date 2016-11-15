@@ -1,0 +1,125 @@
+<!--
+/*
+ * Author: Martin Woolley
+ * Twitter: @bluetooth_mdw
+ *
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
+-->
+<html>
+<head>
+    <LINK href="file:///android_asset/help/help_style.css" type="text/css" rel="stylesheet">
+</head>
+<img src="file:///android_asset/help/bluetooth_sig.png"/>
+<h2>About This Application</h2>
+<h3>Version 1.5.3</h3>
+<h3>Author: Martin Woolley, Bluetooth SIG</h3>
+<h3>Twitter: @bluetooth_mdw</h3>
+<h3>More micro:bit stuff at <a href="http://www.bittysoftware.com">Bitty Software</a></h3>
+<p>The purpose of this application is to demonstrate the primary Bluetooth capabilities which the BBC micro:bit has and to provide those wishing to know how to write their own Bluetooth applications that work
+    with the micro:bit with a series of examples which they can learn from or "repurpose".</p>
+<p>For hex files to load onto your micro:bit and further information go to http://bluetooth-mdw.blogspot.co.uk/p/bbc-microbit.html</p>
+<h3>Read this before using this demo application!</h3>
+<p>Note that if you're using a micro:bit which has the standard out of box firmware on it or some version derived from this, then Bluetooth security is used and you *must* pair your micro:bit with your Android device before you can use this application. To do so go into Settings/Bluetooth on your phone/tablet.</p>
+
+<p>Then, to pair with a micro:bit it must first be placed in “pairing mode”. To do this, hold down both buttons A and B and press and hold the reset button. This will result in “PAIRING MODE” scrolling across the display followed by the graphical representation of the micro:bit 5 character identifier.</p>p>
+
+<p>Now initiate pairing on the phone or tablet. On Android for example, go into Settings/Bluetooth and allow the system to scan for and discover the advertising micro:bit. Select it and pairing will commence. The micro:bit will indicate it’s ready to pair by displaying an arrow which points left towards button A. Press button A and a 6 digit number will be displayed on the micro:bit, one digit at a time. The Android device should now allow you to enter the 6 digit pass key. Do so and if the correct number was entered into the peer, micro:bit will display a tick/check to indicate pairing was achieved.</p>
+
+
+<h2>About Bluetooth</h2>
+
+<h3>Introduction</h3>
+<p>Bluetooth is a wireless communications technology which allows devices to communicate with each other without the need for a central device like a router or access point.</p>
+<p>There are two types of Bluetooth. The original type is called Bluetooth Classic or for technical people, Bluetooth BR/EDR. But there's a newer type of Bluetooth which was designed to use as little power
+ as possible and to be ideal for providing wireless communications capabilities to all manner of device in this new age of the Internet of Things. It's called <b>Bluetooth Smart</b> if you're a consumer but its technical name is <b>Bluetooth Low Energy</b>. The BBC micro:bit uses Bluetooth Low Energy.</p>
+<p>In the world of Bluetooth Low Energy, a device has something called a <b>"profile"</b> which defines the way other devices are able to communicate over Bluetooth with it. In a way, the Bluetooth profile defines the way a device appears to other devices in terms of its features and the things it can do.</p>
+<p>To put it another way, a Bluetooth Low Energy profile is really an interface specification. It defines the data which a device has, what another device can do with that data over a Bluetooth connection and how the device with the profile should respond when a connected device acts upon its data in some way. Let's look at that description in more technical detail.</p>
+
+<h3>Bluetooth Low Energy Basic Concepts</h3>
+<p>A Bluetooth Low Energy device contains a table of data called an <b>Attribute Table</b> which can be accessed by other connected devices in various possible ways. That table of data and the ways in which it can be exploited falls into a technical area of Bluetooth Low Energy called the Generic Attribute profile or <b>"GATT"</b> for short and you may see the term GATT in some of the documentation for APIs such as those provided by the Android platform and used by this application.</p>
+<p>The Attribute Table contains something like a series of records of various types. The main types are called <b>Services</b>, <b>Characteristics</b> and <b>Descriptors</b>. Let's look at each of these terms in turn.</p>
+
+<h3>Attributes</h3>
+<p>Services, Characteristics and Descriptors are all types of Attribute. Hence Generic Attribute Profile, Attribute Table and something called the Attribute Protocol. All attributes have a type which is identified by a UUID (Universally Unique Identifer). Some Attributes are defined by the Bluetooth SIG, the technical standards body for Bluetooth and these have UUIDs which are 16 bits in length. Some Attributes are custom designed for a particular device by the product team and these have 128 bit UUIDs. The micro:bit uses a mixture of 16 bit and 128 bit UUIDs.</p>
+<p></p>
+
+<h3>Structure</h3>
+Services, Characteristics and Descriptors are organised in a hierarchy with Services at the top and Descriptors at the bottom. Services contain one or more Characteristics. A Charactreristic owns zero or more Descriptors. Zero because Descriptors are completely optional whereas a Service must contain at least one Characteristic.
+
+<img src="file:///android_asset/help/gatt_hierarchy.png"/>
+
+<h3>Services</h3>
+<p>A Service is a container for logically related Bluetooth Low Energy data items. Those data items are in fact called Characteristics. A Service can be thought of as the owner of the Characteristics inside it. Often a Service represents a particular feature (e.g. a hardware feature) of a device like a button or a particular sensor. An example of a Bluetooth SIG defined Service is the Device Information Service which, as the name suggests, is a container for various items of information about the device such as its manufacturer and serial number.</p>
+
+<h3>Characteristics</h3>
+<p>Characteristics are items of data which relate to a particular internal state of the device or perhaps some state of the environment which the device can measure using a sensor. The current battery level is an example of internal state data whereas the ambient temperature could perhaps be measured by a device sensor. Sometimes Characteristics represent configuration data such as the frequency at which you want something to be measured. In any of these cases, the way a device can expose such data to other devices to use via Bluetooth Low Energy is by making them available as a Characteristic. An example of a Bluetooth SIG defined Characteristic is the Serial Number String which you'll find inside the Device Information service.</p>
+<p>
+	Characteristics contain various parts. They have a type, a value, some properties and some permissions.
+</p>
+<p>Type is something already explained above, a UUID value which indicates which particular type of Characteristic an Attribute is. Value is the value of the associated state data item.
+</p>
+<p>
+	Properties define what another device can do with the characteristic over Bluetooth in terms of various defined operations such as READ, WRITE or NOTIFY. Reading a characteristic means transferring its current value from the attribute table to the connected device over Bluetooth. Writing allows the connected device to change that value in the state table. Notifications are a special message type which a device like the micro:bit can send to a connected device whenever the value of the associated characteristic changes. Not all Characteristics support all operations. The Characteristic's properties tell you which operations are supported.
+</p>
+<p>
+	Sometimes the device will have been programmed to respond in a special way when it processes an operation like reading or writing a value from the attribute table so operations can result in more happening than simply transferring data across the connection. Perhaps changing the value of a Characteristic will result in the device changing the frequency with which it samples readings from the device accelerometer for example.
+</p>
+<p>Permissions are to do with security and further describe the security conditions that must be met before read or write access to the characteristic is to be granted.</p>
+
+<h3>Descriptors</h3>
+
+<p>
+	Descriptors contain meta data which either augments the details relating to the Characteristic which the Descriptor belongs to or allows the configuration of a behaviour involving that Characteristic. Notification messages are switched on or off using a special descriptor called the Client Characteristic Configuration Descriptor for example. 
+</p>
+
+<h3>Profile</h3>
+<p>
+	A Bluetooth Profile is a specification which pulls together all the required information about how a device behaves, how it can be accessed in terms of its services, characteristics and descriptors, security rules, concurrency limitations and so on. 
+</p>
+
+<h3>Client Server Architecture</h3>
+<p>
+	When a smartphone application interacts with a device like the micro:bit over a Bluetooth Low Energy connection we have a client/server architecture. The phone application is the GATT client and the micro:bit is the GATT server. They communicate using a protocol called the Attribute Protocol or just ATT for short. As a smartphone developer you will work with APIs and not have to worry about formulating ATT protocol data units and so on.
+</p>
+<img src="file:///android_asset/help/services_and_GATT.png"/>
+
+<h3>Device Discovery</h3>
+
+<p>
+	Everything described above relates to devices which are connected and communicating as GATT client and server. But there's a stage which precedes this where the two devices are not yet connected. How do they find each other and connect? The answer to this question is termed 'Device Discovery' and is the responsibility of another part of the Bluetooth Low Energy architecture called the Generic Access Profile (GAP).
+</p>
+
+<p>
+	In GAP, one devices <b>advertises</b>, emitting small packets of data periodically. These packets contain information about the device doing the advertising. Other devices looking for devices to connect to perform something called <b>scanning</b>, receiving and processing advertising packets and filtering out those that come from devices of a type that are not of interest. Usually the user is given information about devices which are discovered and they then select one to be connected to. The first page of this application allows you to scan for micro:bits which are in range.
+</p>
+
+<h3>Bluetooth on the BBC micro:bit</h3>
+<p>
+	Full documentation for the BBC micro:bit Bluetooth profile as used by this application can be found in the Github repository where you probably found this code and can also be accessed from the Profile menu from the Device List screen. It's rather long so you may prefer to view it on a desktop computer.
+</p>
+<p>
+	The micro:bit's accelerometer (motion detector), magnetometer (digital compass), two buttons on the front, LED Display, IO pins on the edge connector, internal message bus and internal temperature sensor are all exposed as Services so that applications can exploit these features of the device. This application shows you how. In addition, the Bluetooth SIG defined Device Information Service is included to allow applications to obtain information such as firmware version details over Bluetooth.
+</p>
+<p>
+	Everything you can do with the micro:bit over Bluetooth is achieved through read, write and notify operations. Not all characteristics support all three so check the profile documentation. Often there are Characteristics whose purpose is to allow you to write configuration values which control other behviours. Technically these are called Control Points. For example you can specify the frequency with which accelerometer data is sampled before it is transmitted as a Notification message to your application.
+</p>
+<h3>Want to Know More?</h3>
+<p>The Bluetooth SIG web site at http://www.bluetooth.com is a good place for further information about Bluetooth in general. You'll find all the SIG defined profiles, services, characteristics and descriptors there as well as the core specification for all Bluetooth technology. If you have problems you can post in the support forums. Feel free to follow @bluetooth_mdw, the author of this application on Twitter and ask questions if you prefer.
+</p>
+<p>
+	That's it! Enjoy Bluetooth Low Energy on the BBC micro:bit!
+</p>
+</body>
+</html>

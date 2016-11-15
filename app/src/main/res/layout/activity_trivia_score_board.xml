@@ -1,0 +1,201 @@
+<!--
+/*
+ * Author: Martin Woolley
+ * Twitter: @bluetooth_mdw
+ *
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:paddingBottom="5dip"
+    android:paddingLeft="5dip"
+    android:paddingRight="5dip"
+    android:paddingTop="5dip">
+
+    <TextView
+        android:id="@+id/message"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/message_background"
+        android:gravity="center"
+        android:paddingLeft="20dip"
+        android:text=""
+        android:textSize="16dp" />
+
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical"
+            android:paddingBottom="20dip"
+            android:paddingTop="20dip">
+
+            <GridLayout
+                android:id="@+id/grid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:columnCount="2">
+
+                <ImageView
+                    android:id="@+id/star_blue"
+                    android:onClick="onStarTouched"
+                    android:layout_marginBottom="4dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
+                    android:layout_marginTop="4dp"
+                    android:gravity="center"
+                    android:paddingLeft="30dip"
+                    android:paddingRight="30dip"
+                    android:paddingTop="5dip"
+                    android:src="@drawable/star_blue_100"
+                    android:visibility="invisible" />
+
+                <ImageView
+                    android:id="@+id/star_pink"
+                    android:onClick="onStarTouched"
+                    android:layout_marginBottom="4dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
+                    android:layout_marginTop="4dp"
+                    android:gravity="center"
+                    android:paddingLeft="30dip"
+                    android:paddingRight="30dip"
+                    android:paddingTop="5dip"
+                    android:src="@drawable/star_pink_100"
+                    android:visibility="invisible" />
+
+                <TextView
+                    android:id="@+id/lbl_geography"
+                    android:onClick="onLabelTouched"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center"
+                    android:text="GEOGRAPHY"
+                    android:textColor="@color/black"
+                    android:textSize="16dp" />
+
+                <TextView
+                    android:id="@+id/lbl_entertainment"
+                    android:onClick="onLabelTouched"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center"
+                    android:text="ENTERTAINMENT"
+                    android:textColor="@color/black"
+                    android:textSize="16dp" />
+
+                <ImageView
+                    android:id="@+id/star_yellow"
+                    android:onClick="onStarTouched"
+                    android:layout_marginBottom="4dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
+                    android:layout_marginTop="4dp"
+                    android:gravity="center"
+                    android:paddingLeft="30dip"
+                    android:paddingRight="30dip"
+                    android:paddingTop="20dip"
+                    android:src="@drawable/star_yellow_100"
+                    android:visibility="invisible" />
+
+                <ImageView
+                    android:id="@+id/star_brown"
+                    android:onClick="onStarTouched"
+                    android:layout_marginBottom="4dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
+                    android:layout_marginTop="4dp"
+                    android:gravity="center"
+                    android:paddingLeft="30dip"
+                    android:paddingRight="30dip"
+                    android:paddingTop="20dip"
+                    android:src="@drawable/star_brown_100"
+                    android:visibility="invisible" />
+
+                <TextView
+                    android:id="@+id/lbl_history"
+                    android:onClick="onLabelTouched"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center"
+                    android:text="HISTORY"
+                    android:textColor="@color/black"
+                    android:textSize="16dp" />
+
+                <TextView
+                    android:id="@+id/lbl_art"
+                    android:onClick="onLabelTouched"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center"
+                    android:text="ART / LITERATURE"
+                    android:textColor="@color/black"
+                    android:textSize="16dp" />
+
+                <ImageView
+                    android:id="@+id/star_green"
+                    android:onClick="onStarTouched"
+                    android:layout_marginBottom="4dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
+                    android:layout_marginTop="4dp"
+                    android:gravity="center"
+                    android:paddingLeft="30dip"
+                    android:paddingRight="30dip"
+                    android:paddingTop="20dip"
+                    android:src="@drawable/star_green_100"
+                    android:visibility="invisible" />
+
+                <ImageView
+                    android:id="@+id/star_orange"
+                    android:onClick="onStarTouched"
+                    android:layout_marginBottom="4dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
+                    android:layout_marginTop="4dp"
+                    android:gravity="center"
+                    android:paddingLeft="30dip"
+                    android:paddingRight="30dip"
+                    android:paddingTop="20dip"
+                    android:src="@drawable/star_orange_100"
+                    android:visibility="invisible" />
+
+                <TextView
+                    android:id="@+id/lbl_science"
+                    android:onClick="onLabelTouched"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center"
+                    android:text="SCIENCE"
+                    android:textColor="@color/black"
+                    android:textSize="16dp" />
+
+                <TextView
+                    android:id="@+id/lbl_sport"
+                    android:onClick="onLabelTouched"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center"
+                    android:text="SPORT"
+                    android:textColor="@color/black"
+                    android:textSize="16dp" />
+
+            </GridLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+</LinearLayout>

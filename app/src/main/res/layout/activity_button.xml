@@ -1,0 +1,116 @@
+<!--
+/*
+ * Author: Martin Woolley
+ * Twitter: @bluetooth_mdw
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:paddingBottom="10dip"
+    android:paddingLeft="10dip"
+    android:paddingTop="10dip">
+
+    <TextView
+        android:id="@+id/message"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingLeft="10dip"
+        android:background="@color/message_background"
+        android:textSize="16dp"
+        android:text="" />
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/deviceView"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical"
+            android:paddingBottom="10dip"
+            android:paddingLeft="10dip"
+            android:paddingTop="10dip">
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="vertical"
+                android:paddingBottom="5dip">
+
+
+                <android.support.v7.widget.GridLayout xmlns:grid="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/grid"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:padding="4dp"
+
+                    grid:alignmentMode="alignBounds"
+                    grid:columnCount="2"
+                    grid:rowOrderPreserved="false"
+                    grid:useDefaultMargins="true">
+
+                    <ImageView
+                        android:id="@+id/button1"
+                        android:gravity="center"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        grid:layout_columnWeight="1"
+                        grid:layout_rowWeight="1"
+                        grid:layout_gravity="fill_horizontal"
+                        android:src="@drawable/button_black_40" />
+
+                    <ImageView
+                        android:id="@+id/button2"
+                        android:gravity="center"
+                        android:layout_width="0dp"
+                        android:layout_height="100dp"
+                        grid:layout_columnWeight="1"
+                        grid:layout_rowWeight="1"
+                        grid:layout_gravity="fill_horizontal"
+                        android:src="@drawable/button_black_40" />
+
+                    <TextView
+                        android:id="@+id/button1_state"
+                        android:gravity="center"
+                        android:layout_width="0dp"
+                        android:layout_height="100dp"
+                        grid:layout_columnWeight="1"
+                        grid:layout_rowWeight="1"
+                        grid:layout_gravity="fill_horizontal"
+                        android:text="Not Pressed"/>
+
+                    <TextView
+                        android:id="@+id/button2_state"
+                        android:gravity="center"
+                        android:layout_width="0dp"
+                        android:layout_height="100dp"
+                        grid:layout_columnWeight="1"
+                        grid:layout_rowWeight="1"
+                        grid:layout_gravity="fill_horizontal"
+                        android:text="Not Pressed"/>
+
+                </android.support.v7.widget.GridLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+</LinearLayout>

@@ -1,0 +1,150 @@
+<!--
+/*
+ * Author: Martin Woolley
+ * Twitter: @bluetooth_mdw
+ *
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
+-->
+<html>
+<head>
+    <LINK href="file:///android_asset/help/help_style.css" type="text/css" rel="stylesheet">
+</head>
+<img>
+<h1>UART - Animal Vegetable Mineral</h1>
+<h2>The Demo</h2>
+<p>Animal Vegetable Mineral is a guessing game for two players. The player with the micro:bit must think of a 'thing' and not tell the other player. The 'thing' must fall into one of the three categories of Animal, Vegetable or
+Mineral. The player with the smartphone proceeds to try to guess what the thing is by asking a series of questions which it must be possible to answer with either YES or NO. The aim is to figure out the thing in as few guesses as possible.
+    Sending a question is achieved by typing it into the smartphone application and pressing the Send Question button.
+</p>
+<p>
+    The micro:bit player will receive questions over Bluetooth and they will be displayed on the LED grid. The micro:bit player should press button A to respond YES, button B to respond with NO or both buttons together if the guess was correct. The selected response is scrolled across the micro:bit
+    display and sent over Bluetooth to the smartphone where it is displayed in a pop-up for the smartphone player to see.
+</p>
+<p>
+    The smartphone app has a New Game option in the menu. Select this to reset the guess count.
+</p>
+<h2>The Code</h2>
+<p>The Bluetooth profile includes a service called the UART Service.
+</p>
+<p>
+    All the code for this demo can be found in ui.UartAvmActivity.java except for the Bluetooth operations which are in bluetooth.BleAdapterService. Sending a question involves writing to the UART Service's RX characteristic (characteristics are
+     named from the point of view of the micro:bit). Responses are sent from the micro:bit to the smartphone as Bluetooth "indications" from the TX Characteristic.
+</p>
+<p>
+    Your micro:bit needs the following code in main.cpp for this demo to work
+</p>
+<p>
+<pre>
+#include "MicroBit.h"
+#include "MicroBitSamples.h"
+#include "MicroBitUARTService.h"
+
+MicroBit uBit;
+MicroBitUARTService *uart;
+
+int connected = 0;
+
+void onConnected(MicroBitEvent e)
+{
+    uBit.display.scroll("C");
+
+    connected = 1;
+
+    // my client will send ASCII strings terminated with the colon character
+    ManagedString eom(":");
+
+    while(1) {
+        ManagedString msg = uart->readUntil(eom);
+        uBit.display.scroll(msg);
+    }
+
+}
+
+void onDisconnected(MicroBitEvent e)
+{
+    uBit.display.scroll("D");
+    connected = 0;
+}
+
+void onButtonA(MicroBitEvent e)
+{
+    if (connected == 0) {
+        uBit.display.scroll("NC");
+        return;
+    }
+    uart->send(ManagedString("YES"));
+    uBit.display.scroll("YES");
+}
+
+void onButtonB(MicroBitEvent e)
+{
+    if (connected == 0) {
+        uBit.display.scroll("NC");
+        return;
+    }
+    uart->send(ManagedString("NO"));
+    uBit.display.scroll("NO");
+}
+
+void onButtonAB(MicroBitEvent e)
+{
+    if (connected == 0) {
+        uBit.display.scroll("NC");
+        return;
+    }
+    uart->send(ManagedString("GOT IT!!"));
+    uBit.display.scroll("GOT IT!!");
+}
+
+/*
+Recommend disabling the DFU and Event services in MicroBitConfig.h since they are not needed here:
+
+#ifndef MICROBIT_BLE_DFU_SERVICE
+#define MICROBIT_BLE_DFU_SERVICE                0
+#endif
+
+#ifndef MICROBIT_BLE_EVENT_SERVICE
+#define MICROBIT_BLE_EVENT_SERVICE              0
+#endif
+
+*/
+
+int main()
+{
+    // Initialise the micro:bit runtime.
+    uBit.init();
+
+    uBit.messageBus.listen(MICROBIT_ID_BLE, MICROBIT_BLE_EVT_CONNECTED, onConnected);
+    uBit.messageBus.listen(MICROBIT_ID_BLE, MICROBIT_BLE_EVT_DISCONNECTED, onDisconnected);
+    uBit.messageBus.listen(MICROBIT_ID_BUTTON_A, MICROBIT_BUTTON_EVT_CLICK, onButtonA);
+    uBit.messageBus.listen(MICROBIT_ID_BUTTON_B, MICROBIT_BUTTON_EVT_CLICK, onButtonB);
+    uBit.messageBus.listen(MICROBIT_ID_BUTTON_AB, MICROBIT_BUTTON_EVT_CLICK, onButtonAB);
+
+
+    // Note GATT table size increased from default in MicroBitConfig.h
+    // #define MICROBIT_SD_GATT_TABLE_SIZE             0x500
+    uart = new MicroBitUARTService(*uBit.ble, 32, 32);
+    uBit.display.scroll("AVM");
+
+    // If main exits, there may still be other fibers running or registered event handlers etc.
+    // Simply release this fiber, which will mean we enter the scheduler. Worse case, we then
+    // sit in the idle task forever, in a power efficient sleep.
+    release_fiber();
+}
+
+</pre>
+</p>
+</body>
+</html>
