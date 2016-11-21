@@ -32,7 +32,7 @@
 <p>You can control how often the accelerometer is polled via the Settings screen. When you change the polling frequency, the new value is sent to the micro:bit by writing it to the Accelerometer Service's Accelerometer Period characteristic.
 </p>
 <p>
-Raw accelerometer data from the micro:bit can be a bit jerky and so a low pass filter function is used to smooth the data. Have a look at the lowPass function in the Utility class to see how this works.
+Raw accelerometer data from the micro:bit can be a bit jerky and so a low pass filter function is used to smooth the data. Have a look at the lowPass function in the Utility class to see how this works. If you want to see the effect that the filter is having, you can switch it off with the Apply Smoothing switch.
 </p>
 <p>
     All the code for this demo can be found in ui.AccelerometerActivity.java except for the Bluetooth operations which are in bluetooth.BleAdapterService.

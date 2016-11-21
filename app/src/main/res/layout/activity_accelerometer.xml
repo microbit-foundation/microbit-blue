@@ -130,6 +130,22 @@
 
                 </GridLayout>
 
+                <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:orientation="vertical"
+                    android:paddingBottom="5dip">
+                    <Switch
+                        android:id="@+id/smoothing"
+                        android:layout_height="wrap_content"
+                        android:text="Apply Smoothing"
+                        android:textSize="16dp"
+                        android:layout_width="match_parent"
+                        android:checked="true"
+                        android:onClick="onApplySmoothingChanged"
+                        android:layout_centerVertical="true" />
+                </RelativeLayout>
+
             </LinearLayout>
 
         </LinearLayout>

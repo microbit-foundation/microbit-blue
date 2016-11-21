@@ -8,8 +8,8 @@ android {
         applicationId "com.bluetooth.mwoolley.microbitbledemo"
         minSdkVersion 19
         targetSdkVersion 23
-        versionCode 6
-        versionName "1.5.3"
+        versionCode 7
+        versionName "1.5.4"
     }
     buildTypes {
         release {

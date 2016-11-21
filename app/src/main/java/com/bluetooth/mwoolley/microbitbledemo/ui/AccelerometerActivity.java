@@ -27,7 +27,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.view.WindowManager;
 
@@ -58,6 +60,7 @@ public class AccelerometerActivity extends AppCompatActivity implements Connecti
     private long start_time;
     private int minute_number;
     private int notification_count;
+    private boolean apply_smoothing=true;
 
     private final ServiceConnection mServiceConnection = new ServiceConnection() {
 
@@ -172,6 +175,10 @@ public class AccelerometerActivity extends AppCompatActivity implements Connecti
         }
     }
 
+    public void onApplySmoothingChanged(View v) {
+        apply_smoothing = ((Switch) v).isChecked();
+    }
+
     private Handler mMessageHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -275,16 +282,16 @@ public class AccelerometerActivity extends AppCompatActivity implements Connecti
                         // A negative Y value means tilting away from you, a positive Y value means tilting towards you
                         // A negative Z value means ?
 
-                        float accel_x = raw_x / 1000f;
-                        float accel_y = raw_y / 1000f;
-                        float accel_z = raw_z / 1000f;
-                        Log.d(Constants.TAG, "Accelerometer data converted: x=" + accel_x + " y=" + accel_y + " z=" + accel_z);
-
-                        accel_input[0] = accel_x;
-                        accel_input[1] = accel_y;
-                        accel_input[2] = accel_z;
-                        accel_output = Utility.lowPass(accel_input, accel_output);
-                        Log.d(Constants.TAG, "Smoothed accelerometer data: x=" + accel_output[0] + " y=" + accel_output[1] + " z=" + accel_output[2]);
+                        accel_input[0] = raw_x / 1000f;
+                        accel_input[1] = raw_y / 1000f;
+                        accel_input[2] = raw_z / 1000f;
+                        if (apply_smoothing) {
+                            accel_output = Utility.lowPass(accel_input, accel_output);
+                        } else {
+                            accel_output[0] = accel_input[0];
+                            accel_output[1] = accel_input[1];
+                            accel_output[2] = accel_input[2];
+                        }
 
                         double pitch = Math.atan(accel_output[0] / Math.sqrt(Math.pow(accel_output[1], 2) + Math.pow(accel_output[2], 2)));
                         double roll = Math.atan(accel_output[1] / Math.sqrt(Math.pow(accel_output[0], 2) + Math.pow(accel_output[2], 2)));

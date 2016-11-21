@@ -1,6 +1,6 @@
 # micro:bit Blue
 
-## Version: 1.5.3
+## Version: 1.5.4
 
 
  * Author: Martin Woolley
@@ -40,6 +40,9 @@ __Known Issues:__
 5. Animal Vegetable Mineral demo: If you disconnect from the micro:bit then reconnect you will not receive indication messages from the micro:bit any more. Reset the micro:bit and reconnect to solve this. Awaiting new micro:bit API to avoid the underlying issue.  
 
 __Version History:__
+
+__1.5.4__
+- It's now possible to switch off data smoothing in the Accelerometer screen to see the effect it has
 
 __1.5.3__
 - Bug fix: out of range x/y coordinates sometimes broke touch processing in game controller.
