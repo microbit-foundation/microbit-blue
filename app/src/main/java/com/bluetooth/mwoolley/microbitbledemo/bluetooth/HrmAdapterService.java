@@ -38,22 +38,19 @@ import android.os.Message;
 import android.util.Log;
 
 import com.bluetooth.mwoolley.microbitbledemo.Constants;
-import com.bluetooth.mwoolley.microbitbledemo.Utility;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.Executors;
 
-public class HrmAdapterService extends Service implements Runnable{
+public class HrmAdapterService extends Service implements Runnable {
 
     private BluetoothAdapter bluetooth_adapter;
     private BluetoothGatt bluetooth_gatt;
     private BluetoothManager bluetooth_manager;
     private Handler activity_handler = null;
     private BluetoothDevice device;
-    private BluetoothGattDescriptor descriptor;
 
     public BluetoothDevice getDevice() {
         return device;
@@ -88,11 +85,11 @@ public class HrmAdapterService extends Service implements Runnable{
 
     private boolean request_processor_running = false;
 
-    private Object mutex = new Object();
+    private final Object mutex = new Object();
     // queue will never contain more than one operation in this version and it will always represent
     // the current request being processed whereas an empty queue means the system can process a new
     // request now
-    private ArrayList<Operation> operation_queue = new ArrayList<Operation>();
+    private ArrayList<Operation> operation_queue = new ArrayList<>();
 
     private long timestamp;
 
@@ -154,21 +151,21 @@ public class HrmAdapterService extends Service implements Runnable{
     private final IBinder mBinder = new LocalBinder();
 
     public void startRequestProcessor() {
-        Log.d(Constants.TAG,"startRequestProcessor");
+        Log.d(Constants.TAG, "startRequestProcessor");
         Thread t = new Thread(this);
         request_processor_running = true;
         t.start();
     }
 
     public void stopRequestProcessor() {
-        Log.d(Constants.TAG,"stopRequestProcessor");
+        Log.d(Constants.TAG, "stopRequestProcessor");
         request_processor_running = false;
         Operation stop = new Operation(Operation.OPERATION_EXIT_QUEUE_PROCESSING_REQUEST);
         addOperation(stop);
     }
 
     private boolean isRequestInProgress() {
-        Log.d(Constants.TAG,"isRequestInProgress called");
+        Log.d(Constants.TAG, "isRequestInProgress called");
         boolean busy = false;
         synchronized (mutex) {
             busy = (operation_queue.size() > 0);
@@ -182,14 +179,14 @@ public class HrmAdapterService extends Service implements Runnable{
         synchronized (mutex) {
             while (operation_queue.size() > 0) {
                 try {
-                    Log.d(Constants.TAG,"Waiting for queue to be empty");
+                    Log.d(Constants.TAG, "Waiting for queue to be empty");
                     mutex.wait();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
             if (operation_queue.size() == 0) {
-                Log.d(Constants.TAG,"Adding operation to queue");
+                Log.d(Constants.TAG, "Adding operation to queue");
                 operation_queue.add(op);
                 mutex.notifyAll();
             }
@@ -257,10 +254,10 @@ public class HrmAdapterService extends Service implements Runnable{
                         op.setOperation_status(Operation.OPERATION_EXECUTING);
                         current_op = op;
                         Log.d(Constants.TAG, "processing operation: " + operation_queue.toString());
-                        boolean ok=false;
+                        boolean ok = false;
                         switch (op.getOperation_type()) {
                             case Operation.OPERATION_WRITE_DESCRIPTOR_REQUEST:
-                                ok = executeSetNotificationsState(op.getService_uuid(),op.getCharacteristic_uuid(),op.isSubscribe());
+                                ok = executeSetNotificationsState(op.getService_uuid(), op.getCharacteristic_uuid(), op.isSubscribe());
                                 break;
                             case Operation.OPERATION_EXIT_QUEUE_PROCESSING_REQUEST:
                                 ok = true;
@@ -322,10 +319,6 @@ public class HrmAdapterService extends Service implements Runnable{
         }
 
         bluetooth_adapter = bluetooth_manager.getAdapter();
-        if (bluetooth_adapter == null) {
-            return;
-        }
-
     }
 
     // connect to the device
@@ -389,7 +382,7 @@ public class HrmAdapterService extends Service implements Runnable{
             return false;
         }
         // add operation to the request processor from a background thread to ensure we do not block the calling thread
-        byte [] cccd_value = BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE;
+        byte[] cccd_value = BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE;
         if (!enabled) {
             cccd_value = BluetoothGattDescriptor.DISABLE_NOTIFICATION_VALUE;
         }
@@ -427,15 +420,14 @@ public class HrmAdapterService extends Service implements Runnable{
             return false;
         }
         bluetooth_gatt.setCharacteristicNotification(gattChar, enabled);
-        // Enable remote notifications
-        descriptor = gattChar.getDescriptor(UUID.fromString(CLIENT_CHARACTERISTIC_CONFIG));
+        // Enable remote notifications\
+        BluetoothGattDescriptor descriptor = gattChar.getDescriptor(UUID.fromString(CLIENT_CHARACTERISTIC_CONFIG));
         if (enabled) {
             descriptor.setValue(BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE);
         } else {
             descriptor.setValue(BluetoothGattDescriptor.DISABLE_NOTIFICATION_VALUE);
         }
-        boolean ok = bluetooth_gatt.writeDescriptor(descriptor);
-        return ok;
+        return bluetooth_gatt.writeDescriptor(descriptor);
     }
 
     public void readRemoteRssi() {

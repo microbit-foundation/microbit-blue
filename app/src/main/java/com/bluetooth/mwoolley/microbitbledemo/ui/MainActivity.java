@@ -16,26 +16,24 @@ package com.bluetooth.mwoolley.microbitbledemo.ui;
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-import java.util.ArrayList;
-import java.util.Set;
 
 import android.Manifest;
+import android.bluetooth.BluetoothDevice;
 import android.content.BroadcastReceiver;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.bluetooth.BluetoothDevice;
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -48,7 +46,6 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.bluetooth.mwoolley.microbitbledemo.Constants;
@@ -60,6 +57,8 @@ import com.bluetooth.mwoolley.microbitbledemo.bluetooth.BleScanner;
 import com.bluetooth.mwoolley.microbitbledemo.bluetooth.BleScannerFactory;
 import com.bluetooth.mwoolley.microbitbledemo.bluetooth.ScanResultsConsumer;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity implements ScanResultsConsumer {
 
     private boolean ble_scanning = false;
@@ -69,9 +68,9 @@ public class MainActivity extends AppCompatActivity implements ScanResultsConsum
     private static final long SCAN_TIMEOUT = 30000;
     private static final int REQUEST_LOCATION = 0;
     private static String[] PERMISSIONS_LOCATION = {Manifest.permission.ACCESS_COARSE_LOCATION};
-    private boolean permissions_granted=false;
+    private boolean permissions_granted = false;
     private static final String DEVICE_NAME_START = "BBC micro";
-    private int device_count=0;
+    private int device_count = 0;
     private Toast toast;
 
     static class ViewHolder {
@@ -145,7 +144,7 @@ public class MainActivity extends AppCompatActivity implements ScanResultsConsum
         try {
             unregisterReceiver(broadcastReceiver);
         } catch (Exception e) {
-            Log.d(Constants.TAG,e.getClass().getCanonicalName()+":"+e.getMessage());
+            Log.d(Constants.TAG, e.getClass().getCanonicalName() + ":" + e.getMessage());
         }
         Settings.getInstance().save(this);
     }
@@ -197,7 +196,7 @@ public class MainActivity extends AppCompatActivity implements ScanResultsConsum
     public void onScan(View view) {
 
         if (!ble_scanner.isScanning()) {
-            device_count=0;
+            device_count = 0;
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 if (checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION)
                         != PackageManager.PERMISSION_GRANTED) {
@@ -227,7 +226,7 @@ public class MainActivity extends AppCompatActivity implements ScanResultsConsum
                     ble_device_list_adapter.notifyDataSetChanged();
                 }
             });
-            simpleToast(getScanningMessage(),2000);
+            simpleToast(getScanningMessage(), 2000);
             ble_scanner.startScanning(this, SCAN_TIMEOUT);
         } else {
             showMsg(Utility.htmlColorRed("Permission to perform Bluetooth scanning was not yet granted"));
@@ -236,7 +235,7 @@ public class MainActivity extends AppCompatActivity implements ScanResultsConsum
 
     private void requestLocationPermission() {
         Log.i(Constants.TAG, "Location permission has NOT yet been granted. Requesting permission.");
-        if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_COARSE_LOCATION)){
+        if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_COARSE_LOCATION)) {
             Log.i(Constants.TAG, "Displaying location permission rationale to provide additional context.");
             final AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("Permission Required");
@@ -266,7 +265,7 @@ public class MainActivity extends AppCompatActivity implements ScanResultsConsum
                 if (ble_scanner.isScanning()) {
                     startScanning();
                 }
-            }else{
+            } else {
                 Log.i(Constants.TAG, "Location permission was NOT granted.");
             }
         } else {
@@ -320,13 +319,14 @@ public class MainActivity extends AppCompatActivity implements ScanResultsConsum
             showMsg(Utility.htmlColorRed(getNoneFoundMessage()));
         }
     }
+
     // adaptor
     private class ListAdapter extends BaseAdapter {
         private ArrayList<BluetoothDevice> ble_devices;
 
         public ListAdapter() {
             super();
-            ble_devices = new ArrayList<BluetoothDevice>();
+            ble_devices = new ArrayList<>();
 
         }
 
@@ -401,16 +401,16 @@ public class MainActivity extends AppCompatActivity implements ScanResultsConsum
 
             if (BluetoothDevice.ACTION_BOND_STATE_CHANGED.equals(action)) {
                 BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
-                        if (device.getBondState() == BluetoothDevice.BOND_NONE) {
-                            showMsg(Utility.htmlColorRed("Device was not paired successfully"));
-                        } else if (device.getBondState() == BluetoothDevice.BOND_BONDING) {
-                            showMsg(Utility.htmlColorGreen("Pairing is in progress"));
-                        } else {
-                            showMsg(Utility.htmlColorGreen("Device was paired successfully - select it now"));
-                        }
+                if (device.getBondState() == BluetoothDevice.BOND_NONE) {
+                    showMsg(Utility.htmlColorRed("Device was not paired successfully"));
+                } else if (device.getBondState() == BluetoothDevice.BOND_BONDING) {
+                    showMsg(Utility.htmlColorGreen("Pairing is in progress"));
+                } else {
+                    showMsg(Utility.htmlColorGreen("Device was paired successfully - select it now"));
                 }
             }
-        };
+        }
+    };
 
     private void showMsg(final String msg) {
         Log.d(Constants.TAG, msg);
@@ -432,7 +432,7 @@ public class MainActivity extends AppCompatActivity implements ScanResultsConsum
     }
 
     private void setButtonText() {
-        String text="";
+        String text = "";
         if (Settings.getInstance().isFilter_unpaired_devices()) {
             text = Constants.FIND_PAIRED;
         } else {

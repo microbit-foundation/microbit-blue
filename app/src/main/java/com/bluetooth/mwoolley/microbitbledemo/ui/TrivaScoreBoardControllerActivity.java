@@ -22,33 +22,23 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.Color;
-import android.media.ToneGenerator;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
-import android.os.Vibrator;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnTouchListener;
 import android.view.WindowManager;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bluetooth.mwoolley.microbitbledemo.AudioToneMaker;
 import com.bluetooth.mwoolley.microbitbledemo.Constants;
 import com.bluetooth.mwoolley.microbitbledemo.MicroBit;
 import com.bluetooth.mwoolley.microbitbledemo.MicroBitEvent;
 import com.bluetooth.mwoolley.microbitbledemo.R;
-import com.bluetooth.mwoolley.microbitbledemo.Settings;
 import com.bluetooth.mwoolley.microbitbledemo.Utility;
 import com.bluetooth.mwoolley.microbitbledemo.bluetooth.BleAdapterService;
 import com.bluetooth.mwoolley.microbitbledemo.bluetooth.ConnectionStatusListener;
@@ -63,15 +53,14 @@ public class TrivaScoreBoardControllerActivity extends AppCompatActivity impleme
     private static final String BROWN_STATE = "BROWN_STATE";
     private static final String GREEN_STATE = "GREEN_STATE";
     private static final String ORANGE_STATE = "ORANGE_STATE";
-    private int blue_state=0;
-    private int pink_state=0;
-    private int yellow_state=0;
-    private int brown_state=0;
-    private int green_state=0;
-    private int orange_state=0;
+    private int blue_state = 0;
+    private int pink_state = 0;
+    private int yellow_state = 0;
+    private int brown_state = 0;
+    private int green_state = 0;
+    private int orange_state = 0;
 
     private BleAdapterService bluetooth_le_adapter;
-    private boolean exiting = false;
     private boolean notifications_on = false;
 
     // micro:bit event codes:
@@ -197,7 +186,7 @@ public class TrivaScoreBoardControllerActivity extends AppCompatActivity impleme
     }
 
     // Service message handler�//////////////////
-    private Handler mMessageHandler = new Handler() {
+    private static Handler mMessageHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
 
@@ -207,6 +196,7 @@ public class TrivaScoreBoardControllerActivity extends AppCompatActivity impleme
             String descriptor_uuid = "";
             byte[] b = null;
             TextView value_text = null;
+            boolean exiting = false;
 
             switch (msg.what) {
                 case BleAdapterService.GATT_CHARACTERISTIC_WRITTEN:
@@ -325,7 +315,6 @@ public class TrivaScoreBoardControllerActivity extends AppCompatActivity impleme
             star.setVisibility(View.VISIBLE);
             orange_state = 1;
             save(this);
-            return;
         }
     }
 
@@ -394,7 +383,7 @@ public class TrivaScoreBoardControllerActivity extends AppCompatActivity impleme
     }
 
     public void save(Context context) {
-        Log.d(Constants.TAG,"Saving preferences");
+        Log.d(Constants.TAG, "Saving preferences");
         SharedPreferences sharedPref = context.getSharedPreferences(TRIVIA_BOARD_STATE_FILE, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putInt(BLUE_STATE, blue_state);
@@ -408,14 +397,14 @@ public class TrivaScoreBoardControllerActivity extends AppCompatActivity impleme
 
 
     public void restore(Context context) {
-        Log.d(Constants.TAG,"Restoring preferences");
+        Log.d(Constants.TAG, "Restoring preferences");
         SharedPreferences sharedPref = context.getSharedPreferences(TRIVIA_BOARD_STATE_FILE, Context.MODE_PRIVATE);
-        blue_state = sharedPref.getInt(BLUE_STATE,0);
-        pink_state = sharedPref.getInt(PINK_STATE,0);
-        yellow_state = sharedPref.getInt(YELLOW_STATE,0);
-        brown_state = sharedPref.getInt(BROWN_STATE,0);
-        green_state = sharedPref.getInt(GREEN_STATE,0);
-        orange_state = sharedPref.getInt(ORANGE_STATE,0);
+        blue_state = sharedPref.getInt(BLUE_STATE, 0);
+        pink_state = sharedPref.getInt(PINK_STATE, 0);
+        yellow_state = sharedPref.getInt(YELLOW_STATE, 0);
+        brown_state = sharedPref.getInt(BROWN_STATE, 0);
+        green_state = sharedPref.getInt(GREEN_STATE, 0);
+        orange_state = sharedPref.getInt(ORANGE_STATE, 0);
     }
 
 }

@@ -16,19 +16,17 @@ package com.bluetooth.mwoolley.microbitbledemo.ui;
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
+
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.bluetooth.mwoolley.microbitbledemo.Constants;
 import com.bluetooth.mwoolley.microbitbledemo.MicroBit;
 import com.bluetooth.mwoolley.microbitbledemo.R;
-import com.bluetooth.mwoolley.microbitbledemo.Settings;
 import com.bluetooth.mwoolley.microbitbledemo.bluetooth.BleAdapterService;
 
 public class ServicesPresentActivity extends AppCompatActivity {
@@ -52,25 +50,25 @@ public class ServicesPresentActivity extends AppCompatActivity {
         TextView presence_temperature = (TextView) this.findViewById(R.id.service_temperature_presence);
         TextView presence_uart = (TextView) this.findViewById(R.id.service_uart_presence);
 
-        indicatePresence(presence_generic_access,MicroBit.getInstance().hasService(BleAdapterService.GENERICACCESS_SERVICE_UUID));
-        indicatePresence(presence_generic_attribute,MicroBit.getInstance().hasService(BleAdapterService.GENERICATTRIBUTE_SERVICE_UUID));
-        indicatePresence(presence_device_information,MicroBit.getInstance().hasService(BleAdapterService.DEVICEINFORMATION_SERVICE_UUID));
-        indicatePresence(presence_dfu_control,MicroBit.getInstance().hasService(BleAdapterService.DFUCONTROLSERVICE_SERVICE_UUID));
-        indicatePresence(presence_accelerometer,MicroBit.getInstance().hasService(BleAdapterService.ACCELEROMETERSERVICE_SERVICE_UUID));
-        indicatePresence(presence_magnetometer,MicroBit.getInstance().hasService(BleAdapterService.MAGNETOMETERSERVICE_SERVICE_UUID));
-        indicatePresence(presence_button,MicroBit.getInstance().hasService(BleAdapterService.BUTTONSERVICE_SERVICE_UUID));
-        indicatePresence(presence_io_pin,MicroBit.getInstance().hasService(BleAdapterService.IOPINSERVICE_SERVICE_UUID));
-        indicatePresence(presence_led,MicroBit.getInstance().hasService(BleAdapterService.LEDSERVICE_SERVICE_UUID));
-        indicatePresence(presence_event,MicroBit.getInstance().hasService(BleAdapterService.EVENTSERVICE_SERVICE_UUID));
-        indicatePresence(presence_temperature,MicroBit.getInstance().hasService(BleAdapterService.TEMPERATURESERVICE_SERVICE_UUID));
-        indicatePresence(presence_uart,MicroBit.getInstance().hasService(BleAdapterService.UARTSERVICE_SERVICE_UUID));
+        indicatePresence(presence_generic_access, MicroBit.getInstance().hasService(BleAdapterService.GENERICACCESS_SERVICE_UUID));
+        indicatePresence(presence_generic_attribute, MicroBit.getInstance().hasService(BleAdapterService.GENERICATTRIBUTE_SERVICE_UUID));
+        indicatePresence(presence_device_information, MicroBit.getInstance().hasService(BleAdapterService.DEVICEINFORMATION_SERVICE_UUID));
+        indicatePresence(presence_dfu_control, MicroBit.getInstance().hasService(BleAdapterService.DFUCONTROLSERVICE_SERVICE_UUID));
+        indicatePresence(presence_accelerometer, MicroBit.getInstance().hasService(BleAdapterService.ACCELEROMETERSERVICE_SERVICE_UUID));
+        indicatePresence(presence_magnetometer, MicroBit.getInstance().hasService(BleAdapterService.MAGNETOMETERSERVICE_SERVICE_UUID));
+        indicatePresence(presence_button, MicroBit.getInstance().hasService(BleAdapterService.BUTTONSERVICE_SERVICE_UUID));
+        indicatePresence(presence_io_pin, MicroBit.getInstance().hasService(BleAdapterService.IOPINSERVICE_SERVICE_UUID));
+        indicatePresence(presence_led, MicroBit.getInstance().hasService(BleAdapterService.LEDSERVICE_SERVICE_UUID));
+        indicatePresence(presence_event, MicroBit.getInstance().hasService(BleAdapterService.EVENTSERVICE_SERVICE_UUID));
+        indicatePresence(presence_temperature, MicroBit.getInstance().hasService(BleAdapterService.TEMPERATURESERVICE_SERVICE_UUID));
+        indicatePresence(presence_uart, MicroBit.getInstance().hasService(BleAdapterService.UARTSERVICE_SERVICE_UUID));
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Back");
     }
 
-    private void indicatePresence(TextView tv , boolean present) {
-        Log.d(Constants.TAG, "indicatePresence: "+tv.getText().toString()+" "+present);
+    private void indicatePresence(TextView tv, boolean present) {
+        Log.d(Constants.TAG, "indicatePresence: " + tv.getText().toString() + " " + present);
         if (present) {
             tv.setTextColor(Color.parseColor(Constants.SERVICE_PRESENT_COLOUR));
         } else {

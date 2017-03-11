@@ -16,17 +16,16 @@ package com.bluetooth.mwoolley.microbitbledemo.bluetooth;
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-import com.bluetooth.mwoolley.microbitbledemo.Utility;
 
-import java.util.Arrays;
+import com.bluetooth.mwoolley.microbitbledemo.Utility;
 
 
 public class Operation {
 
-    public static final int OPERATION_READ_CHARACTERISTIC_REQUEST  = 1;
+    public static final int OPERATION_READ_CHARACTERISTIC_REQUEST = 1;
     public static final int OPERATION_WRITE_CHARACTERISTIC_REQUEST = 2;
     public static final int OPERATION_WRITE_DESCRIPTOR_REQUEST = 3;
-    public static final int OPERATION_EXIT_QUEUE_PROCESSING_REQUEST  = -1;
+    public static final int OPERATION_EXIT_QUEUE_PROCESSING_REQUEST = -1;
 
     public static final int OPERATION_PENDING = 0;
     public static final int OPERATION_EXECUTING = 1;
@@ -36,10 +35,10 @@ public class Operation {
     private String service_uuid;
     private String characteristic_uuid;
     private String descriptor_uuid;
-    private byte [] value;
-    private boolean subscribe=false;
+    private byte[] value;
+    private boolean subscribe = false;
 
-    public Operation(int operation_type, String service_uuid, String characteristic_uuid, String descriptor_uuid, byte [] value) {
+    public Operation(int operation_type, String service_uuid, String characteristic_uuid, String descriptor_uuid, byte[] value) {
         this.operation_type = operation_type;
         this.service_uuid = service_uuid;
         this.characteristic_uuid = characteristic_uuid;
@@ -53,14 +52,14 @@ public class Operation {
         this.characteristic_uuid = characteristic_uuid;
     }
 
-    public Operation(int operation_type, String service_uuid, String characteristic_uuid, byte [] value) {
+    public Operation(int operation_type, String service_uuid, String characteristic_uuid, byte[] value) {
         this.operation_type = operation_type;
         this.service_uuid = service_uuid;
         this.characteristic_uuid = characteristic_uuid;
         this.value = value;
     }
 
-    public Operation(int operation_type, String service_uuid, String characteristic_uuid, boolean subscribe, byte [] value) {
+    public Operation(int operation_type, String service_uuid, String characteristic_uuid, boolean subscribe, byte[] value) {
         this.operation_type = operation_type;
         this.service_uuid = service_uuid;
         this.characteristic_uuid = characteristic_uuid;

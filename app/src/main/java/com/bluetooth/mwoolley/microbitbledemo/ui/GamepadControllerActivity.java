@@ -56,9 +56,6 @@ public class GamepadControllerActivity extends AppCompatActivity implements Conn
     private BleAdapterService bluetooth_le_adapter;
     private Vibrator vibrator;
     private boolean has_vibrator;
-    private ImageView gamepad;
-    private ImageView gamepad_mask;
-
     private int pad_1_up_colour;
     private int pad_1_down_colour;
     private int pad_1_left_colour;
@@ -88,10 +85,10 @@ public class GamepadControllerActivity extends AppCompatActivity implements Conn
         super.onCreate(savedInstanceState);
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         setContentView(R.layout.activity_gamepad);
-//        getSupportActionBar().setTitle(R.string.screen_title_controller);
+        // getSupportActionBar().setTitle(R.string.screen_title_controller);
 
-        gamepad_mask = (ImageView) GamepadControllerActivity.this.findViewById(R.id.gamepad_mask);
-        gamepad = (ImageView) GamepadControllerActivity.this.findViewById(R.id.gamepad);
+        //ImageView gamepad_mask = (ImageView) GamepadControllerActivity.this.findViewById(R.id.gamepad_mask);
+        ImageView gamepad = (ImageView) GamepadControllerActivity.this.findViewById(R.id.gamepad);
         gamepad.setOnTouchListener(this);
 
         pad_1_up_colour = getResources().getColor(R.color.pad_1_up_colour);
@@ -159,7 +156,7 @@ public class GamepadControllerActivity extends AppCompatActivity implements Conn
     }
 
     // Service message handler�//////////////////
-    private Handler mMessageHandler = new Handler() {
+    private static Handler mMessageHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
 
@@ -327,9 +324,9 @@ public class GamepadControllerActivity extends AppCompatActivity implements Conn
 
     // see https://blahti.wordpress.com/2012/06/26/images-with-clickable-areas/
     public boolean closeMatch (int color1, int color2, int tolerance) {
-        int red_diff = (int) Math.abs (Color.red(color1) - Color.red (color2));
-        int green_diff = (int) Math.abs (Color.green(color1) - Color.green(color2));
-        int blue_diff = (int) Math.abs (Color.blue(color1) - Color.blue(color2));
+        int red_diff = Math.abs (Color.red(color1) - Color.red (color2));
+        int green_diff = Math.abs (Color.green(color1) - Color.green(color2));
+        int blue_diff = Math.abs (Color.blue(color1) - Color.blue(color2));
         if (red_diff > tolerance ) return false;
         if (green_diff > tolerance ) return false;
         if (blue_diff > tolerance ) return false;

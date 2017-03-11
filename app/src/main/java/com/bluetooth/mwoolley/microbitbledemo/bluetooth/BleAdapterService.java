@@ -60,7 +60,6 @@ public class BleAdapterService extends Service implements Runnable{
     private BluetoothManager bluetooth_manager;
     private Handler activity_handler = null;
     private BluetoothDevice device;
-    private BluetoothGattDescriptor descriptor;
 
     public BluetoothDevice getDevice() {
         return device;
@@ -162,11 +161,11 @@ public class BleAdapterService extends Service implements Runnable{
 
     private boolean request_processor_running = false;
 
-    private Object mutex = new Object();
+    private final Object mutex = new Object();
     // queue will never contain more than one operation in this version and it will always represent
     // the current request being processed whereas an empty queue means the system can process a new
     // request now
-    private ArrayList<Operation> operation_queue = new ArrayList<Operation>();
+    private ArrayList<Operation> operation_queue = new ArrayList<>();
 
     private long timestamp;
     private KeepAlive keep_alive = new KeepAlive();
@@ -508,10 +507,6 @@ public class BleAdapterService extends Service implements Runnable{
         }
 
         bluetooth_adapter = bluetooth_manager.getAdapter();
-        if (bluetooth_adapter == null) {
-            return;
-        }
-
     }
 
     // connect to the device
@@ -813,6 +808,7 @@ public class BleAdapterService extends Service implements Runnable{
             return false;
         }
         bluetooth_gatt.setCharacteristicNotification(gattChar, enabled);
+        BluetoothGattDescriptor descriptor;
         // Enable remote notifications
         descriptor = gattChar.getDescriptor(UUID.fromString(CLIENT_CHARACTERISTIC_CONFIG));
 
@@ -823,8 +819,7 @@ public class BleAdapterService extends Service implements Runnable{
             descriptor.setValue(BluetoothGattDescriptor.DISABLE_NOTIFICATION_VALUE);
         }
         timestamp();
-        boolean ok = bluetooth_gatt.writeDescriptor(descriptor);
-        return ok;
+        return bluetooth_gatt.writeDescriptor(descriptor);
     }
 
     public void readRemoteRssi() {
@@ -848,8 +843,7 @@ public class BleAdapterService extends Service implements Runnable{
         try {
             Method refresh_method = bluetooth_gatt.getClass().getMethod("refresh", new Class[0]);
             if (refresh_method != null) {
-                boolean bool = ((Boolean) refresh_method.invoke(bluetooth_gatt, new Object[0])).booleanValue();
-                return bool;
+                return ((Boolean) refresh_method.invoke(bluetooth_gatt, new Object[0])).booleanValue();
             }
         }
         catch (Exception e) {

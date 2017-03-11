@@ -35,7 +35,6 @@ public class TemperatureAlarmSettingsActivity extends AppCompatActivity {
     public static final int START_TEMPERATURE_ALARM_SETTINGS = 1;
     private TextView upper;
     private TextView lower;
-    private Toast toast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +49,7 @@ public class TemperatureAlarmSettingsActivity extends AppCompatActivity {
     }
 
     private void simpleToast(String message, int duration) {
-        toast = Toast.makeText(this, message, duration);
+        Toast toast = Toast.makeText(this, message, duration);
         toast.setGravity(Gravity.CENTER, 0, 0);
         toast.show();
     }

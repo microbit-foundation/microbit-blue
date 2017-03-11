@@ -16,13 +16,13 @@ package com.bluetooth.mwoolley.microbitbledemo.ui;
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
+
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bluetooth.mwoolley.microbitbledemo.Constants;
@@ -36,7 +36,6 @@ public class HrmSettingsActivity extends AppCompatActivity {
     private EditText zone2;
     private EditText zone3;
     private EditText zone4;
-    private Toast toast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,15 +65,15 @@ public class HrmSettingsActivity extends AppCompatActivity {
                 int z3 = Integer.parseInt(zone3.getText().toString());
                 int z4 = Integer.parseInt(zone4.getText().toString());
                 if (z1 >= z2) {
-                    simpleToast("Zone 1 must be less than Zone 2",3000);
+                    simpleToast("Zone 1 must be less than Zone 2", 3000);
                     return false;
                 }
                 if (z2 >= z3) {
-                    simpleToast("Zone 2 must be less than Zone 3",3000);
+                    simpleToast("Zone 2 must be less than Zone 3", 3000);
                     return false;
                 }
                 if (z3 >= z4) {
-                    simpleToast("Zone 3 must be less than Zone 4",3000);
+                    simpleToast("Zone 3 must be less than Zone 4", 3000);
                     return false;
                 }
 
@@ -92,7 +91,7 @@ public class HrmSettingsActivity extends AppCompatActivity {
     }
 
     private void simpleToast(String message, int duration) {
-        toast = Toast.makeText(this, message, duration);
+        Toast toast = Toast.makeText(this, message, duration);
         toast.setGravity(Gravity.CENTER, 0, 0);
         toast.show();
     }

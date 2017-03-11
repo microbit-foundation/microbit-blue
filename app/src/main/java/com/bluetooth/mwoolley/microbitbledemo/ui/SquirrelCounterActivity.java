@@ -152,7 +152,7 @@ public class SquirrelCounterActivity extends AppCompatActivity implements Connec
         return super.onOptionsItemSelected(item);
     }
 
-    private Handler mMessageHandler = new Handler() {
+    private static Handler mMessageHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
 

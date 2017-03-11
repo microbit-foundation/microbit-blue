@@ -20,7 +20,6 @@ package com.bluetooth.mwoolley.microbitbledemo.ui;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
@@ -34,7 +33,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
-import android.widget.GridLayout;
 import android.widget.TextView;
 
 import com.bluetooth.mwoolley.microbitbledemo.Constants;
@@ -50,9 +48,9 @@ public class UartAvmActivity extends AppCompatActivity implements ConnectionStat
 
     private BleAdapterService bluetooth_le_adapter;
 
-    private boolean exiting=false;
-    private boolean indications_on=false;
-    private int guess_count=0;
+    private boolean exiting = false;
+    private boolean indications_on = false;
+    private int guess_count = 0;
 
     private final ServiceConnection mServiceConnection = new ServiceConnection() {
 
@@ -112,7 +110,7 @@ public class UartAvmActivity extends AppCompatActivity implements ConnectionStat
             exiting = true;
             bluetooth_le_adapter.setIndicationsState(Utility.normaliseUUID(BleAdapterService.UARTSERVICE_SERVICE_UUID), Utility.normaliseUUID(BleAdapterService.UART_TX_CHARACTERISTIC_UUID), false);
         }
-        exiting=true;
+        exiting = true;
         if (!MicroBit.getInstance().isMicrobit_connected()) {
             try {
                 // may already have unbound. No API to check state so....
@@ -121,7 +119,7 @@ public class UartAvmActivity extends AppCompatActivity implements ConnectionStat
             }
         }
         finish();
-        exiting=true;
+        exiting = true;
     }
 
     @Override
@@ -151,7 +149,7 @@ public class UartAvmActivity extends AppCompatActivity implements ConnectionStat
     }
 
     // Service message handler�//////////////////
-    private Handler mMessageHandler = new Handler() {
+    private static Handler mMessageHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
 
@@ -180,10 +178,10 @@ public class UartAvmActivity extends AppCompatActivity implements ConnectionStat
                     Log.d(Constants.TAG, "descriptor " + descriptor_uuid + " of characteristic " + characteristic_uuid + " of service " + service_uuid + " written OK");
                     if (!exiting) {
                         showMsg(Utility.htmlColorGreen("UART TX indications ON"));
-                        indications_on=true;
+                        indications_on = true;
                     } else {
                         showMsg(Utility.htmlColorGreen("UART TX indications OFF"));
-                        indications_on=false;
+                        indications_on = false;
                         finish();
                     }
                     break;
@@ -195,10 +193,10 @@ public class UartAvmActivity extends AppCompatActivity implements ConnectionStat
                     b = bundle.getByteArray(BleAdapterService.PARCEL_VALUE);
                     Log.d(Constants.TAG, "Value=" + Utility.byteArrayAsHexString(b));
                     if (characteristic_uuid.equalsIgnoreCase((Utility.normaliseUUID(BleAdapterService.UART_TX_CHARACTERISTIC_UUID)))) {
-                        String ascii="";
+                        String ascii = "";
                         Log.d(Constants.TAG, "UART TX received");
                         try {
-                            ascii = new String(b,"US-ASCII");
+                            ascii = new String(b, "US-ASCII");
                         } catch (UnsupportedEncodingException e) {
                             e.printStackTrace();
                             showMsg(Utility.htmlColorGreen("Could not convert TX data to ASCII"));
@@ -208,7 +206,7 @@ public class UartAvmActivity extends AppCompatActivity implements ConnectionStat
                         if (!ascii.equals(Constants.AVM_CORRECT_RESPONSE)) {
                             showAnswer(ascii);
                         } else {
-                            showAnswer(ascii+" You only needed "+guess_count+" guesses!");
+                            showAnswer(ascii + " You only needed " + guess_count + " guesses!");
                         }
                     }
                     break;
@@ -243,7 +241,7 @@ public class UartAvmActivity extends AppCompatActivity implements ConnectionStat
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                ((TextView) UartAvmActivity.this.findViewById(R.id.avm_guess_count)).setText("Guesses: "+Integer.toString(gc));
+                ((TextView) UartAvmActivity.this.findViewById(R.id.avm_guess_count)).setText("Guesses: " + Integer.toString(gc));
             }
         });
     }

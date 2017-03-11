@@ -30,13 +30,11 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.WindowManager;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bluetooth.mwoolley.microbitbledemo.Constants;
 import com.bluetooth.mwoolley.microbitbledemo.MicroBit;
 import com.bluetooth.mwoolley.microbitbledemo.R;
-import com.bluetooth.mwoolley.microbitbledemo.Settings;
 import com.bluetooth.mwoolley.microbitbledemo.Utility;
 import com.bluetooth.mwoolley.microbitbledemo.bluetooth.BleAdapterService;
 import com.bluetooth.mwoolley.microbitbledemo.bluetooth.ConnectionStatusListener;
@@ -55,10 +53,10 @@ public class DeviceInformationActivity extends AppCompatActivity implements Conn
 
         @Override
         public void onServiceConnected(ComponentName componentName, IBinder service) {
-            Log.d(Constants.TAG,"onServiceConnected");
+            Log.d(Constants.TAG, "onServiceConnected");
             bluetooth_le_adapter = ((BleAdapterService.LocalBinder) service).getService();
             bluetooth_le_adapter.setActivityHandler(mMessageHandler);
-            bluetooth_le_adapter.readCharacteristic(Utility.normaliseUUID(BleAdapterService.DEVICEINFORMATION_SERVICE_UUID),Utility.normaliseUUID(BleAdapterService.MODELNUMBERSTRING_CHARACTERISTIC_UUID));
+            bluetooth_le_adapter.readCharacteristic(Utility.normaliseUUID(BleAdapterService.DEVICEINFORMATION_SERVICE_UUID), Utility.normaliseUUID(BleAdapterService.MODELNUMBERSTRING_CHARACTERISTIC_UUID));
         }
 
         @Override
@@ -135,31 +133,31 @@ public class DeviceInformationActivity extends AppCompatActivity implements Conn
                     Log.d(Constants.TAG, "Value=" + Utility.byteArrayAsHexString(b));
                     if (characteristic_uuid.equalsIgnoreCase(Utility.normaliseUUID(BleAdapterService.MODELNUMBERSTRING_CHARACTERISTIC_UUID))) {
                         try {
-                            model_number = new String(b,"UTF-8");
+                            model_number = new String(b, "UTF-8");
                         } catch (UnsupportedEncodingException e) {
                             e.printStackTrace();
                             model_number = "ERROR: Bad encoding";
                         }
                         showModelNumber();
                         // next read the serial number
-                        bluetooth_le_adapter.readCharacteristic(Utility.normaliseUUID(BleAdapterService.DEVICEINFORMATION_SERVICE_UUID),Utility.normaliseUUID(BleAdapterService.SERIALNUMBERSTRING_CHARACTERISTIC_UUID));
+                        bluetooth_le_adapter.readCharacteristic(Utility.normaliseUUID(BleAdapterService.DEVICEINFORMATION_SERVICE_UUID), Utility.normaliseUUID(BleAdapterService.SERIALNUMBERSTRING_CHARACTERISTIC_UUID));
                         break;
                     }
                     if (characteristic_uuid.equalsIgnoreCase(Utility.normaliseUUID(BleAdapterService.SERIALNUMBERSTRING_CHARACTERISTIC_UUID))) {
                         try {
-                            serial_number = new String(b,"UTF-8");
+                            serial_number = new String(b, "UTF-8");
                         } catch (UnsupportedEncodingException e) {
                             e.printStackTrace();
                             serial_number = "ERROR: Bad encoding";
                         }
                         showSerialNumber();
                         // finally, read the firmware revision
-                        bluetooth_le_adapter.readCharacteristic(Utility.normaliseUUID(BleAdapterService.DEVICEINFORMATION_SERVICE_UUID),Utility.normaliseUUID(BleAdapterService.FIRMWAREREVISIONSTRING_CHARACTERISTIC_UUID));
+                        bluetooth_le_adapter.readCharacteristic(Utility.normaliseUUID(BleAdapterService.DEVICEINFORMATION_SERVICE_UUID), Utility.normaliseUUID(BleAdapterService.FIRMWAREREVISIONSTRING_CHARACTERISTIC_UUID));
                         break;
                     }
                     if (characteristic_uuid.equalsIgnoreCase(Utility.normaliseUUID(BleAdapterService.FIRMWAREREVISIONSTRING_CHARACTERISTIC_UUID))) {
                         try {
-                            firmware_revision = new String(b,"UTF-8");
+                            firmware_revision = new String(b, "UTF-8");
                         } catch (UnsupportedEncodingException e) {
                             e.printStackTrace();
                             firmware_revision = "ERROR: Bad encoding";

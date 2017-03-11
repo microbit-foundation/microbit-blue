@@ -16,14 +16,13 @@ package com.bluetooth.mwoolley.microbitbledemo.ui;
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
+
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
-import android.widget.RadioButton;
-import android.widget.TextView;
 
 import com.bluetooth.mwoolley.microbitbledemo.Constants;
 import com.bluetooth.mwoolley.microbitbledemo.R;
@@ -58,7 +57,7 @@ public class MainSettingsActivity extends AppCompatActivity {
     }
 
     public void onFilterChange(View view) {
-        Log.d(Constants.TAG,"onFilterChange: "+cb_fud.isChecked());
+        Log.d(Constants.TAG, "onFilterChange: " + cb_fud.isChecked());
         boolean checked = cb_fud.isChecked();
         Settings settings = Settings.getInstance();
         settings.setFilter_unpaired_devices(checked);

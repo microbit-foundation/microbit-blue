@@ -16,7 +16,6 @@ package com.bluetooth.mwoolley.microbitbledemo.ui;
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-import java.util.List;
 
 import android.bluetooth.BluetoothGattService;
 import android.content.ComponentName;
@@ -33,20 +32,20 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.view.WindowManager;
 import android.widget.Toast;
 
-import com.bluetooth.mwoolley.microbitbledemo.AudioToneMaker;
-import com.bluetooth.mwoolley.microbitbledemo.bluetooth.BleAdapterService;
-import com.bluetooth.mwoolley.microbitbledemo.bluetooth.ConnectionStatusListener;
 import com.bluetooth.mwoolley.microbitbledemo.Constants;
 import com.bluetooth.mwoolley.microbitbledemo.MicroBit;
 import com.bluetooth.mwoolley.microbitbledemo.R;
 import com.bluetooth.mwoolley.microbitbledemo.Utility;
-import com.bluetooth.mwoolley.microbitbledemo.bluetooth.HrmAdapterService;
+import com.bluetooth.mwoolley.microbitbledemo.bluetooth.BleAdapterService;
+import com.bluetooth.mwoolley.microbitbledemo.bluetooth.ConnectionStatusListener;
+
+import java.util.List;
 
 public class MenuActivity extends AppCompatActivity implements ConnectionStatusListener {
 
@@ -106,7 +105,7 @@ public class MenuActivity extends AppCompatActivity implements ConnectionStatusL
                 startActivity(intent);
                 return true;
             } else {
-                Log.d(Constants.TAG,"Services not yet discovered");
+                Log.d(Constants.TAG, "Services not yet discovered");
             }
         }
         if (id == R.id.menu_menu_services) {
@@ -180,7 +179,7 @@ public class MenuActivity extends AppCompatActivity implements ConnectionStatusL
 
     public void onDemoSelected(View view) {
         Log.d(Constants.TAG, "onDemoSelected ");
-        if (!MicroBit.getInstance().isMicrobit_connected()|| !MicroBit.getInstance().isMicrobit_services_discovered() ) {
+        if (!MicroBit.getInstance().isMicrobit_connected() || !MicroBit.getInstance().isMicrobit_services_discovered()) {
             Log.d(Constants.TAG, "onDemoSelected - micro:bit is not connected or service discovery has not completed so ignoring");
             showMsg(Utility.htmlColorRed("Not connected to micro:bit - find and connect again"));
             return;
@@ -318,7 +317,7 @@ public class MenuActivity extends AppCompatActivity implements ConnectionStatusL
     }
 
     // Service message handler�//////////////////
-    private Handler mMessageHandler = new Handler() {
+    private static Handler mMessageHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             Bundle bundle;
@@ -340,7 +339,7 @@ public class MenuActivity extends AppCompatActivity implements ConnectionStatusL
                 case BleAdapterService.GATT_SERVICES_DISCOVERED:
                     Log.d(Constants.TAG, "XXXX Services discovered");
                     showMsg(Utility.htmlColorGreen("Ready"));
-                    ((LinearLayout) MenuActivity.this.findViewById(R.id.menu_items_area)).setVisibility(View.VISIBLE);
+                    (MenuActivity.this.findViewById(R.id.menu_items_area)).setVisibility(View.VISIBLE);
                     List<BluetoothGattService> slist = bluetooth_le_adapter.getSupportedGattServices();
                     for (BluetoothGattService svc : slist) {
                         Log.d(Constants.TAG, "UUID=" + svc.getUuid().toString().toUpperCase() + " INSTANCE=" + svc.getInstanceId());

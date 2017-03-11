@@ -129,7 +129,7 @@ public class IoDigitalOutputActivity extends AppCompatActivity implements Connec
         return super.onOptionsItemSelected(item);
     }
     // Service message handler�//////////////////
-    private Handler mMessageHandler = new Handler() {
+    private static Handler mMessageHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
 
@@ -192,7 +192,8 @@ public class IoDigitalOutputActivity extends AppCompatActivity implements Connec
                     service_uuid = bundle.getString(BleAdapterService.PARCEL_SERVICE_UUID);
                     characteristic_uuid = bundle.getString(BleAdapterService.PARCEL_CHARACTERISTIC_UUID);
                     b = bundle.getByteArray(BleAdapterService.PARCEL_VALUE);
-                    Log.d(Constants.TAG, "characteristic " + characteristic_uuid + " of service " + service_uuid.toString() + " written OK:0x" + Utility.byteArrayAsHexString(b));
+                    Log.d(Constants.TAG, "characteristic " + characteristic_uuid + " of service " +
+                            service_uuid + " written OK:0x" + Utility.byteArrayAsHexString(b));
                     if (characteristic_uuid.equalsIgnoreCase((Utility.normaliseUUID(BleAdapterService.PINDATA_CHARACTERISTIC_UUID)))) {
                         on = !on;
                         setSwitchImage(on);
@@ -220,7 +221,8 @@ public class IoDigitalOutputActivity extends AppCompatActivity implements Connec
                     characteristic_uuid = bundle.getString(BleAdapterService.PARCEL_CHARACTERISTIC_UUID);
                     descriptor_uuid = bundle.getString(BleAdapterService.PARCEL_DESCRIPTOR_UUID);
                     b = bundle.getByteArray(BleAdapterService.PARCEL_VALUE);
-                    Log.d(Constants.TAG, "descriptor " + descriptor_uuid + " of characteristic " + characteristic_uuid + " of service " + service_uuid.toString() + " written OK:0x" + Utility.byteArrayAsHexString(b));
+                    Log.d(Constants.TAG, "descriptor " + descriptor_uuid + " of characteristic " + characteristic_uuid + " of service " +
+                            service_uuid+ " written OK:0x" + Utility.byteArrayAsHexString(b));
                     Log.d(Constants.TAG, "exiting=" + exiting);
                     if (exiting) {
                         finish();

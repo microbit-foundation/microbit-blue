@@ -15,22 +15,20 @@ package com.bluetooth.mwoolley.microbitbledemo;
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
+
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
-import android.widget.NumberPicker;
-import android.widget.NumberPicker.OnValueChangeListener;
-import android.widget.SeekBar;
 
 public class Settings {
 
     private static Settings instance;
-    private short accelerometer_period=20;
-    private short magnetometer_period=20;
-    private short scrolling_delay=500;
-    private boolean filter_unpaired_devices=true;
-    private byte lower_temperature_limit=0;
-    private byte upper_temperature_limit=30;
+    private short accelerometer_period = 20;
+    private short magnetometer_period = 20;
+    private short scrolling_delay = 500;
+    private boolean filter_unpaired_devices = true;
+    private byte lower_temperature_limit = 0;
+    private byte upper_temperature_limit = 30;
 
     private short mes_dpad_controller = 1104;
     private short mes_dpad_1_button_up_on = 1;
@@ -96,7 +94,7 @@ public class Settings {
     }
 
     public void save(Context context) {
-        Log.d(Constants.TAG,"Saving preferences");
+        Log.d(Constants.TAG, "Saving preferences");
         SharedPreferences sharedPref = context.getSharedPreferences(SETTINGS_FILE, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putInt(ACCELEROMETER_PERIOD, accelerometer_period);
@@ -105,61 +103,61 @@ public class Settings {
         editor.putBoolean(FILTER_UNPAIRED_DEVICES, filter_unpaired_devices);
         editor.putInt(LOWER_TEMPERATURE_LIMIT, lower_temperature_limit);
         editor.putInt(UPPER_TEMPERATURE_LIMIT, upper_temperature_limit);
-        editor.putInt(MES_DPAD_CONTROLLER,mes_dpad_controller);
-        editor.putInt(MES_DPAD_1_BUTTON_UP_ON,mes_dpad_1_button_up_on);
-        editor.putInt(MES_DPAD_1_BUTTON_UP_OFF,mes_dpad_1_button_up_off);
-        editor.putInt(MES_DPAD_1_BUTTON_DOWN_ON,mes_dpad_1_button_down_on);
-        editor.putInt(MES_DPAD_1_BUTTON_DOWN_OFF,mes_dpad_1_button_down_off);
+        editor.putInt(MES_DPAD_CONTROLLER, mes_dpad_controller);
+        editor.putInt(MES_DPAD_1_BUTTON_UP_ON, mes_dpad_1_button_up_on);
+        editor.putInt(MES_DPAD_1_BUTTON_UP_OFF, mes_dpad_1_button_up_off);
+        editor.putInt(MES_DPAD_1_BUTTON_DOWN_ON, mes_dpad_1_button_down_on);
+        editor.putInt(MES_DPAD_1_BUTTON_DOWN_OFF, mes_dpad_1_button_down_off);
         editor.putInt(MES_DPAD_1_BUTTON_LEFT_ON, mes_dpad_1_button_left_on);
-        editor.putInt(MES_DPAD_1_BUTTON_LEFT_OFF,mes_dpad_1_button_left_off);
-        editor.putInt(MES_DPAD_1_BUTTON_RIGHT_ON,mes_dpad_1_button_right_on);
-        editor.putInt(MES_DPAD_1_BUTTON_RIGHT_OFF,mes_dpad_1_button_right_off);
-        editor.putInt(MES_DPAD_2_BUTTON_UP_ON,mes_dpad_2_button_up_on);
-        editor.putInt(MES_DPAD_2_BUTTON_UP_OFF,mes_dpad_2_button_up_off);
-        editor.putInt(MES_DPAD_2_BUTTON_DOWN_ON,mes_dpad_2_button_down_on);
-        editor.putInt(MES_DPAD_2_BUTTON_DOWN_OFF,mes_dpad_2_button_down_off);
-        editor.putInt(MES_DPAD_2_BUTTON_LEFT_ON,mes_dpad_2_button_left_on);
-        editor.putInt(MES_DPAD_2_BUTTON_LEFT_OFF,mes_dpad_2_button_left_off);
-        editor.putInt(MES_DPAD_2_BUTTON_RIGHT_ON,mes_dpad_2_button_right_on);
-        editor.putInt(MES_DPAD_2_BUTTON_RIGHT_OFF,mes_dpad_2_button_right_off);
-        editor.putInt(HRM_ZONE_1,hrm_zone_1_ceiling);
-        editor.putInt(HRM_ZONE_2,hrm_zone_2_ceiling);
-        editor.putInt(HRM_ZONE_3,hrm_zone_3_ceiling);
-        editor.putInt(HRM_ZONE_4,hrm_zone_4_ceiling);
+        editor.putInt(MES_DPAD_1_BUTTON_LEFT_OFF, mes_dpad_1_button_left_off);
+        editor.putInt(MES_DPAD_1_BUTTON_RIGHT_ON, mes_dpad_1_button_right_on);
+        editor.putInt(MES_DPAD_1_BUTTON_RIGHT_OFF, mes_dpad_1_button_right_off);
+        editor.putInt(MES_DPAD_2_BUTTON_UP_ON, mes_dpad_2_button_up_on);
+        editor.putInt(MES_DPAD_2_BUTTON_UP_OFF, mes_dpad_2_button_up_off);
+        editor.putInt(MES_DPAD_2_BUTTON_DOWN_ON, mes_dpad_2_button_down_on);
+        editor.putInt(MES_DPAD_2_BUTTON_DOWN_OFF, mes_dpad_2_button_down_off);
+        editor.putInt(MES_DPAD_2_BUTTON_LEFT_ON, mes_dpad_2_button_left_on);
+        editor.putInt(MES_DPAD_2_BUTTON_LEFT_OFF, mes_dpad_2_button_left_off);
+        editor.putInt(MES_DPAD_2_BUTTON_RIGHT_ON, mes_dpad_2_button_right_on);
+        editor.putInt(MES_DPAD_2_BUTTON_RIGHT_OFF, mes_dpad_2_button_right_off);
+        editor.putInt(HRM_ZONE_1, hrm_zone_1_ceiling);
+        editor.putInt(HRM_ZONE_2, hrm_zone_2_ceiling);
+        editor.putInt(HRM_ZONE_3, hrm_zone_3_ceiling);
+        editor.putInt(HRM_ZONE_4, hrm_zone_4_ceiling);
         editor.commit();
     }
 
 
     public void restore(Context context) {
-        Log.d(Constants.TAG,"Restoring preferences");
+        Log.d(Constants.TAG, "Restoring preferences");
         SharedPreferences sharedPref = context.getSharedPreferences(SETTINGS_FILE, Context.MODE_PRIVATE);
-        accelerometer_period = (short) sharedPref.getInt(ACCELEROMETER_PERIOD,20);
-        magnetometer_period = (short) sharedPref.getInt(MAGNETOMETER_PERIOD,20);
-        scrolling_delay = (short)  sharedPref.getInt(SCROLLING_DELAY,500);
-        filter_unpaired_devices = sharedPref.getBoolean(FILTER_UNPAIRED_DEVICES,true);
-        lower_temperature_limit = (byte)(sharedPref.getInt(LOWER_TEMPERATURE_LIMIT,0) & 0xff);
-        upper_temperature_limit = (byte)(sharedPref.getInt(UPPER_TEMPERATURE_LIMIT,30) & 0xff);
-        mes_dpad_controller = (short)  sharedPref.getInt(MES_DPAD_CONTROLLER,1104);
-        mes_dpad_1_button_up_on = (short) sharedPref.getInt(MES_DPAD_1_BUTTON_UP_ON,1);
-        mes_dpad_1_button_up_off = (short) sharedPref.getInt(MES_DPAD_1_BUTTON_UP_OFF,2);
-        mes_dpad_1_button_down_on = (short) sharedPref.getInt(MES_DPAD_1_BUTTON_DOWN_ON,3);
-        mes_dpad_1_button_down_off = (short) sharedPref.getInt(MES_DPAD_1_BUTTON_DOWN_OFF,4);
-        mes_dpad_1_button_left_on = (short) sharedPref.getInt(MES_DPAD_1_BUTTON_LEFT_ON,5);
-        mes_dpad_1_button_left_off = (short) sharedPref.getInt(MES_DPAD_1_BUTTON_LEFT_OFF,6);
-        mes_dpad_1_button_right_on = (short) sharedPref.getInt(MES_DPAD_1_BUTTON_RIGHT_ON,7);
-        mes_dpad_1_button_right_off = (short) sharedPref.getInt(MES_DPAD_1_BUTTON_RIGHT_OFF,8);
-        mes_dpad_2_button_up_on = (short) sharedPref.getInt(MES_DPAD_2_BUTTON_UP_ON,9);
-        mes_dpad_2_button_up_off = (short) sharedPref.getInt(MES_DPAD_2_BUTTON_UP_OFF,10);
-        mes_dpad_2_button_down_on = (short) sharedPref.getInt(MES_DPAD_2_BUTTON_DOWN_ON,11);
-        mes_dpad_2_button_down_off = (short) sharedPref.getInt(MES_DPAD_2_BUTTON_DOWN_OFF,12);
-        mes_dpad_2_button_left_on = (short) sharedPref.getInt(MES_DPAD_2_BUTTON_LEFT_ON,13);
-        mes_dpad_2_button_left_off = (short) sharedPref.getInt(MES_DPAD_2_BUTTON_LEFT_OFF,14);
-        mes_dpad_2_button_right_on = (short) sharedPref.getInt(MES_DPAD_2_BUTTON_RIGHT_ON,15);
-        mes_dpad_2_button_right_off = (short) sharedPref.getInt(MES_DPAD_2_BUTTON_RIGHT_OFF,16);
-        hrm_zone_1_ceiling = sharedPref.getInt(HRM_ZONE_1,90);
-        hrm_zone_2_ceiling = sharedPref.getInt(HRM_ZONE_2,110);
-        hrm_zone_3_ceiling = sharedPref.getInt(HRM_ZONE_3,130);
-        hrm_zone_4_ceiling = sharedPref.getInt(HRM_ZONE_4,160);
+        accelerometer_period = (short) sharedPref.getInt(ACCELEROMETER_PERIOD, 20);
+        magnetometer_period = (short) sharedPref.getInt(MAGNETOMETER_PERIOD, 20);
+        scrolling_delay = (short) sharedPref.getInt(SCROLLING_DELAY, 500);
+        filter_unpaired_devices = sharedPref.getBoolean(FILTER_UNPAIRED_DEVICES, true);
+        lower_temperature_limit = (byte) (sharedPref.getInt(LOWER_TEMPERATURE_LIMIT, 0) & 0xff);
+        upper_temperature_limit = (byte) (sharedPref.getInt(UPPER_TEMPERATURE_LIMIT, 30) & 0xff);
+        mes_dpad_controller = (short) sharedPref.getInt(MES_DPAD_CONTROLLER, 1104);
+        mes_dpad_1_button_up_on = (short) sharedPref.getInt(MES_DPAD_1_BUTTON_UP_ON, 1);
+        mes_dpad_1_button_up_off = (short) sharedPref.getInt(MES_DPAD_1_BUTTON_UP_OFF, 2);
+        mes_dpad_1_button_down_on = (short) sharedPref.getInt(MES_DPAD_1_BUTTON_DOWN_ON, 3);
+        mes_dpad_1_button_down_off = (short) sharedPref.getInt(MES_DPAD_1_BUTTON_DOWN_OFF, 4);
+        mes_dpad_1_button_left_on = (short) sharedPref.getInt(MES_DPAD_1_BUTTON_LEFT_ON, 5);
+        mes_dpad_1_button_left_off = (short) sharedPref.getInt(MES_DPAD_1_BUTTON_LEFT_OFF, 6);
+        mes_dpad_1_button_right_on = (short) sharedPref.getInt(MES_DPAD_1_BUTTON_RIGHT_ON, 7);
+        mes_dpad_1_button_right_off = (short) sharedPref.getInt(MES_DPAD_1_BUTTON_RIGHT_OFF, 8);
+        mes_dpad_2_button_up_on = (short) sharedPref.getInt(MES_DPAD_2_BUTTON_UP_ON, 9);
+        mes_dpad_2_button_up_off = (short) sharedPref.getInt(MES_DPAD_2_BUTTON_UP_OFF, 10);
+        mes_dpad_2_button_down_on = (short) sharedPref.getInt(MES_DPAD_2_BUTTON_DOWN_ON, 11);
+        mes_dpad_2_button_down_off = (short) sharedPref.getInt(MES_DPAD_2_BUTTON_DOWN_OFF, 12);
+        mes_dpad_2_button_left_on = (short) sharedPref.getInt(MES_DPAD_2_BUTTON_LEFT_ON, 13);
+        mes_dpad_2_button_left_off = (short) sharedPref.getInt(MES_DPAD_2_BUTTON_LEFT_OFF, 14);
+        mes_dpad_2_button_right_on = (short) sharedPref.getInt(MES_DPAD_2_BUTTON_RIGHT_ON, 15);
+        mes_dpad_2_button_right_off = (short) sharedPref.getInt(MES_DPAD_2_BUTTON_RIGHT_OFF, 16);
+        hrm_zone_1_ceiling = sharedPref.getInt(HRM_ZONE_1, 90);
+        hrm_zone_2_ceiling = sharedPref.getInt(HRM_ZONE_2, 110);
+        hrm_zone_3_ceiling = sharedPref.getInt(HRM_ZONE_3, 130);
+        hrm_zone_4_ceiling = sharedPref.getInt(HRM_ZONE_4, 160);
     }
 
     public short getAccelerometer_period() {

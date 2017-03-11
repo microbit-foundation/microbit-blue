@@ -16,6 +16,7 @@ package com.bluetooth.mwoolley.microbitbledemo.bluetooth;
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
+
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.le.BluetoothLeScanner;
 import android.bluetooth.le.ScanCallback;
@@ -23,7 +24,6 @@ import android.bluetooth.le.ScanFilter;
 import android.bluetooth.le.ScanResult;
 import android.bluetooth.le.ScanSettings;
 import android.content.Context;
-import android.os.Build;
 import android.util.Log;
 
 import com.bluetooth.mwoolley.microbitbledemo.Constants;
@@ -37,7 +37,7 @@ import java.util.List;
  */
 public class BleScannerPostAndroid4 extends BleScanner {
 
-    private static final int PERMISSIONS_ACCESS_COARSE_LOCATION=1;
+    private static final int PERMISSIONS_ACCESS_COARSE_LOCATION = 1;
     private BluetoothLeScanner scanner = null;
 
     public BleScannerPostAndroid4(Context context) {
@@ -47,7 +47,7 @@ public class BleScannerPostAndroid4 extends BleScanner {
     @Override
     public void startScanning(ScanResultsConsumer scan_results_consumer) {
         if (scanning) {
-            Log.d(Constants.TAG,"Already scanning so ignoring startScanning request");
+            Log.d(Constants.TAG, "Already scanning so ignoring startScanning request");
             return;
         }
         this.scan_results_consumer = scan_results_consumer;
@@ -103,7 +103,7 @@ public class BleScannerPostAndroid4 extends BleScanner {
     };
 
     private void scanLeDevices() {
-        Log.d(Constants.TAG,"Scanning");
+        Log.d(Constants.TAG, "Scanning");
         List<ScanFilter> filters;
         filters = new ArrayList<ScanFilter>();
         ScanSettings settings = new ScanSettings.Builder().setScanMode(ScanSettings.SCAN_MODE_LOW_LATENCY).build();
