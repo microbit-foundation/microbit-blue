@@ -179,7 +179,7 @@ public class AccelerometerActivity extends AppCompatActivity implements Connecti
         apply_smoothing = ((Switch) v).isChecked();
     }
 
-    private Handler mMessageHandler = new Handler() {
+    private static Handler mMessageHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
 
@@ -345,8 +345,8 @@ public class AccelerometerActivity extends AppCompatActivity implements Connecti
                 ((TextView) AccelerometerActivity.this.findViewById(R.id.accel_z)).setText("Z: " + String.format("%.3f", accel_data[2]));
                 ((TextView) AccelerometerActivity.this.findViewById(R.id.pitch)).setText("PITCH: " + String.format("%.1f", pitch));
                 ((TextView) AccelerometerActivity.this.findViewById(R.id.roll)).setText("ROLL: " + String.format("%.1f", roll));
-                ((ImageView) AccelerometerActivity.this.findViewById(R.id.microbit)).setRotationX((float) roll);
-                ((ImageView) AccelerometerActivity.this.findViewById(R.id.microbit)).setRotationY((float) pitch);
+                (AccelerometerActivity.this.findViewById(R.id.microbit)).setRotationX((float) roll);
+                (AccelerometerActivity.this.findViewById(R.id.microbit)).setRotationY((float) pitch);
             }
         });
     }

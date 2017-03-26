@@ -163,7 +163,7 @@ public class LEDsActivity extends AppCompatActivity implements ConnectionStatusL
     }
 
     // Service message handler�//////////////////
-    private Handler mMessageHandler = new Handler() {
+    private static Handler mMessageHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
 

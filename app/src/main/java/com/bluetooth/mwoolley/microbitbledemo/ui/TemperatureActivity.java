@@ -131,7 +131,7 @@ public class TemperatureActivity extends AppCompatActivity implements Connection
     }
 
     // Service message handler�//////////////////
-    private Handler mMessageHandler = new Handler() {
+    private static Handler mMessageHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
 
@@ -150,7 +150,8 @@ public class TemperatureActivity extends AppCompatActivity implements Connection
                     characteristic_uuid = bundle.getString(BleAdapterService.PARCEL_CHARACTERISTIC_UUID);
                     descriptor_uuid = bundle.getString(BleAdapterService.PARCEL_DESCRIPTOR_UUID);
                     b = bundle.getByteArray(BleAdapterService.PARCEL_VALUE);
-                    Log.d(Constants.TAG, "descriptor " + descriptor_uuid + " of characteristic " + characteristic_uuid + " of service " + service_uuid.toString() + " written OK:0x" + Utility.byteArrayAsHexString(b));
+                    Log.d(Constants.TAG, "descriptor " + descriptor_uuid + " of characteristic " + characteristic_uuid + " of service " +
+                            service_uuid + " written OK:0x" + Utility.byteArrayAsHexString(b));
                     Log.d(Constants.TAG,"exiting="+exiting);
                     if (exiting) {
                         shutdownSteps();

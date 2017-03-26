@@ -53,8 +53,8 @@ public class MicroBit {
     }
 
     public void resetAttributeTables() {
-        services = new Hashtable<Handle,BluetoothGattService>();
-        service_characteristics = new Hashtable<Handle,List<BluetoothGattCharacteristic>>();
+        services = new Hashtable<>();
+        service_characteristics = new Hashtable<>();
     }
 
     public BluetoothDevice getBluetooth_device() {

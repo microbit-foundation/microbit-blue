@@ -66,8 +66,6 @@ public class HrmListActivity extends AppCompatActivity implements ScanResultsCon
 
     private boolean ble_scanning = false;
     private boolean service_connected = false;
-    private boolean is_hrm=false;
-    private Handler handler = new Handler();
     private ListAdapter ble_device_list_adapter;
     private BleScanner ble_scanner;
     private static final long SCAN_TIMEOUT = 30000;
@@ -75,7 +73,6 @@ public class HrmListActivity extends AppCompatActivity implements ScanResultsCon
     private static String[] PERMISSIONS_LOCATION = {Manifest.permission.ACCESS_COARSE_LOCATION};
     private boolean permissions_granted=false;
     private int device_count=0;
-    private Toast toast;
     private BluetoothDevice selected_device;
 
     static class ViewHolder {
@@ -259,7 +256,7 @@ public class HrmListActivity extends AppCompatActivity implements ScanResultsCon
         }
     }
     // Service message handler�//////////////////
-    private Handler mMessageHandler = new Handler() {
+    private static Handler mMessageHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             Bundle bundle;
@@ -267,6 +264,7 @@ public class HrmListActivity extends AppCompatActivity implements ScanResultsCon
             String characteristic_uuid = "";
             byte[] b = null;
             TextView value_text = null;
+            boolean is_hrm=false;
 
             switch (msg.what) {
                 case HrmAdapterService.GATT_CONNECTED:
@@ -310,7 +308,7 @@ public class HrmListActivity extends AppCompatActivity implements ScanResultsCon
     }
 
     private void simpleToast(String message, int duration) {
-        toast = Toast.makeText(this, message, duration);
+        Toast toast = Toast.makeText(this, message, duration);
         toast.setGravity(Gravity.CENTER, 0, 0);
         toast.show();
     }
@@ -355,7 +353,7 @@ public class HrmListActivity extends AppCompatActivity implements ScanResultsCon
 
         public ListAdapter() {
             super();
-            ble_devices = new ArrayList<BluetoothDevice>();
+            ble_devices = new ArrayList<>();
 
         }
 
@@ -432,8 +430,7 @@ public class HrmListActivity extends AppCompatActivity implements ScanResultsCon
     }
 
     private void setButtonText() {
-        String text=Constants.FIND_HRM_MONITORS;
-        final String button_text = text;
+        final String button_text = Constants.FIND_HRM_MONITORS;
         runOnUiThread(new Runnable() {
             @Override
             public void run() {

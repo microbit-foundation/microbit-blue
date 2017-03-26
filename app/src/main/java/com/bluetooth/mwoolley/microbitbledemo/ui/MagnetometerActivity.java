@@ -56,7 +56,6 @@ public class MagnetometerActivity extends AppCompatActivity implements Connectio
     private BleAdapterService bluetooth_le_adapter;
 
     private int magnetometer_period;
-    private short current_bearing;
     private boolean exiting=false;
     private int exit_step=0;
     private boolean mag_data_notifications_on =false;
@@ -194,7 +193,7 @@ public class MagnetometerActivity extends AppCompatActivity implements Connectio
     }
 
     // Service message handler�//////////////////
-    private Handler mMessageHandler = new Handler() {
+    private static Handler mMessageHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
 
@@ -204,6 +203,7 @@ public class MagnetometerActivity extends AppCompatActivity implements Connectio
             String descriptor_uuid = "";
             byte[] b = null;
             TextView value_text = null;
+            short current_bearing;
 
             switch (msg.what) {
                 case BleAdapterService.GATT_CHARACTERISTIC_WRITTEN:
@@ -220,7 +220,8 @@ public class MagnetometerActivity extends AppCompatActivity implements Connectio
                     service_uuid = bundle.getString(BleAdapterService.PARCEL_SERVICE_UUID);
                     characteristic_uuid = bundle.getString(BleAdapterService.PARCEL_CHARACTERISTIC_UUID);
                     descriptor_uuid = bundle.getString(BleAdapterService.PARCEL_DESCRIPTOR_UUID);
-                    Log.d(Constants.TAG, "descriptor " + descriptor_uuid + " of characteristic " + characteristic_uuid + " of service " + service_uuid.toString() + " written OK");
+                    Log.d(Constants.TAG, "descriptor " + descriptor_uuid + " of characteristic " + characteristic_uuid + " of service " +
+                            service_uuid + " written OK");
                     Log.d(Constants.TAG,Utility.normaliseUUID(BleAdapterService.MAGNETOMETERDATA_CHARACTERISTIC_UUID));
                     if (!exiting) {
                         if (characteristic_uuid.equalsIgnoreCase(Utility.normaliseUUID(BleAdapterService.MAGNETOMETERDATA_CHARACTERISTIC_UUID))) {

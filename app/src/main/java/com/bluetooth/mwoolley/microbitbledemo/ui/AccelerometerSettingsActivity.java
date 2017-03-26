@@ -16,18 +16,13 @@ package com.bluetooth.mwoolley.microbitbledemo.ui;
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-import android.app.Activity;
-import android.content.Intent;
+
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.NumberPicker;
 import android.widget.RadioButton;
-import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.bluetooth.mwoolley.microbitbledemo.Constants;

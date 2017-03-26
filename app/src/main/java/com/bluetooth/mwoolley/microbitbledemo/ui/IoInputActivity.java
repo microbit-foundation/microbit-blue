@@ -43,9 +43,6 @@ public class IoInputActivity extends AppCompatActivity implements ConnectionStat
 
     private int exit_step = 0;
     private boolean exiting = false;
-    private boolean on = false;
-    private boolean configured = false;
-
     private final ServiceConnection mServiceConnection = new ServiceConnection() {
 
         @Override
@@ -101,13 +98,13 @@ public class IoInputActivity extends AppCompatActivity implements ConnectionStat
         switch (exit_step) {
             case 0:
                 exit_step++;
-                bluetooth_le_adapter.setNotificationsState(Utility.normaliseUUID(BleAdapterService.IOPINSERVICE_SERVICE_UUID), Utility.normaliseUUID(BleAdapterService.PINDATA_CHARACTERISTIC_UUID), false);
-                return;
+                bluetooth_le_adapter.setNotificationsState(Utility.normaliseUUID(BleAdapterService.IOPINSERVICE_SERVICE_UUID),
+                        Utility.normaliseUUID(BleAdapterService.PINDATA_CHARACTERISTIC_UUID), false);
         }
     }
 
     // Service message handler�//////////////////
-    private Handler mMessageHandler = new Handler() {
+    private static Handler mMessageHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
 
@@ -125,14 +122,14 @@ public class IoInputActivity extends AppCompatActivity implements ConnectionStat
                     service_uuid = bundle.getString(BleAdapterService.PARCEL_SERVICE_UUID);
                     characteristic_uuid = bundle.getString(BleAdapterService.PARCEL_CHARACTERISTIC_UUID);
                     b = bundle.getByteArray(BleAdapterService.PARCEL_VALUE);
-                    Log.d(Constants.TAG, "characteristic " + characteristic_uuid + " of service " + service_uuid.toString() + " written OK:0x" + Utility.byteArrayAsHexString(b));
+                    Log.d(Constants.TAG, "characteristic " + characteristic_uuid + " of service " +
+                            service_uuid + " written OK:0x" + Utility.byteArrayAsHexString(b));
                     if (characteristic_uuid.equalsIgnoreCase((Utility.normaliseUUID(BleAdapterService.PINADCONFIGURATION_CHARACTERISTIC_UUID)))) {
                         // P{IN 0 configured for input
                         byte[] io_flags = {0x01};
                         bluetooth_le_adapter.writeCharacteristic(Utility.normaliseUUID(BleAdapterService.IOPINSERVICE_SERVICE_UUID), Utility.normaliseUUID(BleAdapterService.PINIOCONFIGURATION_CHARACTERISTIC_UUID), io_flags);
                     } else {
                         if (characteristic_uuid.equalsIgnoreCase((Utility.normaliseUUID(BleAdapterService.PINIOCONFIGURATION_CHARACTERISTIC_UUID)))) {
-                            configured = true;
                             showMsg("Reading Pin Data");
                             bluetooth_le_adapter.readCharacteristic(Utility.normaliseUUID(BleAdapterService.IOPINSERVICE_SERVICE_UUID), Utility.normaliseUUID(BleAdapterService.PINDATA_CHARACTERISTIC_UUID));
 //                            if (bluetooth_le_adapter.setNotificationsState(Utility.normaliseUUID(BleAdapterService.IOPINSERVICE_SERVICE_UUID), Utility.normaliseUUID(BleAdapterService.PINDATA_CHARACTERISTIC_UUID), true)) {
@@ -149,7 +146,8 @@ public class IoInputActivity extends AppCompatActivity implements ConnectionStat
                     service_uuid = bundle.getString(BleAdapterService.PARCEL_SERVICE_UUID);
                     characteristic_uuid = bundle.getString(BleAdapterService.PARCEL_CHARACTERISTIC_UUID);
                     b = bundle.getByteArray(BleAdapterService.PARCEL_VALUE);
-                    Log.d(Constants.TAG, "characteristic " + characteristic_uuid + " of service " + service_uuid.toString() + " read value: 0x" + Utility.byteArrayAsHexString(b));
+                    Log.d(Constants.TAG, "characteristic " + characteristic_uuid + " of service " +
+                            service_uuid + " read value: 0x" + Utility.byteArrayAsHexString(b));
                     if (characteristic_uuid.equalsIgnoreCase((Utility.normaliseUUID(BleAdapterService.PINDATA_CHARACTERISTIC_UUID)))) {
                         ((TextView) IoInputActivity.this.findViewById(R.id.input_value)).setText("Input: " + b[0]);
                     }
@@ -162,7 +160,8 @@ public class IoInputActivity extends AppCompatActivity implements ConnectionStat
                     characteristic_uuid = bundle.getString(BleAdapterService.PARCEL_CHARACTERISTIC_UUID);
                     descriptor_uuid = bundle.getString(BleAdapterService.PARCEL_DESCRIPTOR_UUID);
                     b = bundle.getByteArray(BleAdapterService.PARCEL_VALUE);
-                    Log.d(Constants.TAG, "descriptor " + descriptor_uuid + " of characteristic " + characteristic_uuid + " of service " + service_uuid.toString() + " written OK:0x" + Utility.byteArrayAsHexString(b));
+                    Log.d(Constants.TAG, "descriptor " + descriptor_uuid + " of characteristic " + characteristic_uuid + " of service " +
+                            service_uuid + " written OK:0x" + Utility.byteArrayAsHexString(b));
                     Log.d(Constants.TAG, "exiting=" + exiting);
                     if (exiting) {
                         finish();

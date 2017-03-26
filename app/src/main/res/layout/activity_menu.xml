@@ -55,7 +55,8 @@
                 android:layout_marginBottom="20dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:paddingLeft="10dip">
+                android:paddingLeft="10dip"
+                android:baselineAligned="false">
 
                 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                     android:layout_width="fill_parent"
@@ -91,7 +92,8 @@
                 android:layout_marginBottom="20dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:paddingLeft="10dip">
+                android:paddingLeft="10dip"
+                android:baselineAligned="false">
 
                 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                     android:layout_width="fill_parent"
@@ -126,7 +128,8 @@
                 android:layout_marginBottom="20dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:paddingLeft="10dip">
+                android:paddingLeft="10dip"
+                android:baselineAligned="false">
 
                 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                     android:layout_width="fill_parent"
@@ -161,7 +164,8 @@
                 android:layout_marginBottom="20dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:paddingLeft="10dip">
+                android:paddingLeft="10dip"
+                android:baselineAligned="false">
 
                 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                     android:layout_width="fill_parent"
@@ -197,7 +201,8 @@
                 android:layout_marginBottom="20dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:paddingLeft="10dip">
+                android:paddingLeft="10dip"
+                android:baselineAligned="false">
 
                 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                     android:layout_width="fill_parent"
@@ -234,7 +239,8 @@
                 android:layout_marginBottom="20dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:paddingLeft="10dip">
+                android:paddingLeft="10dip"
+                android:baselineAligned="false">
 
                 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                     android:layout_width="fill_parent"
@@ -272,7 +278,8 @@
                 android:layout_marginBottom="20dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:paddingLeft="10dip">
+                android:paddingLeft="10dip"
+                android:baselineAligned="false">
 
                 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                     android:layout_width="fill_parent"
@@ -310,7 +317,8 @@
                 android:layout_marginBottom="20dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:paddingLeft="10dip">
+                android:paddingLeft="10dip"
+                android:baselineAligned="false">
 
                 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                     android:layout_width="fill_parent"
@@ -348,7 +356,8 @@
                 android:layout_marginBottom="20dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:paddingLeft="10dip">
+                android:paddingLeft="10dip"
+                android:baselineAligned="false">
 
                 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                     android:layout_width="fill_parent"
@@ -386,7 +395,8 @@
                 android:layout_marginBottom="20dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:paddingLeft="10dip">
+                android:paddingLeft="10dip"
+                android:baselineAligned="false">
 
                 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                     android:layout_width="fill_parent"
@@ -423,7 +433,8 @@
                 android:layout_marginBottom="20dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:paddingLeft="10dip">
+                android:paddingLeft="10dip"
+                android:baselineAligned="false">
 
                 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                     android:layout_width="fill_parent"
@@ -460,7 +471,8 @@
                 android:layout_marginBottom="20dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:paddingLeft="10dip">
+                android:paddingLeft="10dip"
+                android:baselineAligned="false">
 
                 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                     android:layout_width="fill_parent"
@@ -497,7 +509,8 @@
                 android:layout_marginBottom="20dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:paddingLeft="10dip">
+                android:paddingLeft="10dip"
+                android:baselineAligned="false">
 
                 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                     android:layout_width="fill_parent"
@@ -534,7 +547,8 @@
                 android:layout_marginBottom="20dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:paddingLeft="10dip">
+                android:paddingLeft="10dip"
+                android:baselineAligned="false">
 
                 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                     android:layout_width="fill_parent"

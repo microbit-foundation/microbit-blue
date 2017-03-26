@@ -57,10 +57,6 @@ public class HrmActivity extends AppCompatActivity implements ConnectionStatusLi
 
     private boolean notifications_on =false;
 
-    private BluetoothDevice hrm_device;
-
-    private boolean hrm_connected=true;
-
     private byte[] led_matrix_state;
     // contains 25 cells, one per LED
 
@@ -70,7 +66,7 @@ public class HrmActivity extends AppCompatActivity implements ConnectionStatusLi
     private boolean partial_on = false;
 
     private boolean microbit_display_refresh_running=true;
-    private Object mutex=new Object();
+    private final Object mutex=new Object();
 
     private int hr_measurement=0;
     private long total_hrm_measurements;
@@ -85,7 +81,6 @@ public class HrmActivity extends AppCompatActivity implements ConnectionStatusLi
             notifications_on=false;
             hrm_le_adapter = ((HrmAdapterService.LocalBinder) service).getService();
             hrm_le_adapter.setActivityHandler(mMessageHandler);
-            hrm_device = hrm_le_adapter.getDevice();
             hrm_le_adapter.setNotificationsState(Utility.normaliseUUID(HrmAdapterService.HEARTRATE_SERVICE_UUID), Utility.normaliseUUID(HrmAdapterService.HEARTRATEMEASUREMENT_CHARACTERISTIC_UUID), true);
         }
 
@@ -212,7 +207,7 @@ public class HrmActivity extends AppCompatActivity implements ConnectionStatusLi
         }
     }
 
-    private Handler mMessageHandler = new Handler() {
+    private static Handler mMessageHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
 
@@ -251,7 +246,7 @@ public class HrmActivity extends AppCompatActivity implements ConnectionStatusLi
                         if(is16BitHrMeasurement(b[0])) {
                            hr_measurement = (int) Utility.shortFromLittleEndianBytes(b[1],b[2]);
                         } else {
-                            hr_measurement = (int) (b[1] & 0xff);
+                            hr_measurement = (b[1] & 0xff);
                         }
                         Log.d(Constants.TAG, "Heart rate measurement received: " + hr_measurement);
                         updateBpm(hr_measurement);
@@ -343,7 +338,7 @@ public class HrmActivity extends AppCompatActivity implements ConnectionStatusLi
     }
 
     private void setLedColumn(int column, int percentage, int bit) {
-        int leds_lit = (int) (percentage / 20);
+        int leds_lit = (percentage / 20);
         boolean partial = false;
         int remainder = percentage % 20;
         Log.d(Constants.TAG,"column: "+column+" percentage: "+percentage+" remainder: "+remainder);
@@ -388,7 +383,6 @@ public class HrmActivity extends AppCompatActivity implements ConnectionStatusLi
             return;
         }
         hrm_histogram[4] = hrm_histogram[4] + 1;
-        return;
     }
 
     private boolean is16BitHrMeasurement(byte value) {
