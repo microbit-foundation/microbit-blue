@@ -125,3 +125,8 @@ __1.0.0__
 
 - Initial version which used the Android 4.x scanning APIs
 
+## Contributing
+
+Pull Requests are not being accepted at this time. If you find a bug or have an idea for a new feature, please submit details in the issue tracker. In the case of new features, it may be possible to collaborate on the development. This will be assessed on a case by case basis.
+
+Thank you
